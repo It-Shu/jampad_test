@@ -7,23 +7,29 @@
   height: 100vh;
   justify-content: center;
   border-top-right-radius: 30px;
+
 }
+
+.welcomeText{
+  margin-top: -17%;
+}
+
 .welcome {
   font-size: xx-large;
 }
 
-.jamPad_text{
+.jamPadText{
   font-size: x-large;
 }
 
-.sing_up_text {
+.singUpText {
   opacity: 0.5;
 }
 .joinButton{
   border: none;
   background-color: #383838;
   border-radius: 5px;
-  width: 60%;
+  width: 70%;
   height: 36px;
   color: white;
 }

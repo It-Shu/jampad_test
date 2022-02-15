@@ -11,7 +11,7 @@ export const Auth = () => {
                 <p className={s.authTitle}>Authorization</p>
                 <Input placeholder={'Your email'} className={s.authInput}/>
                 <Input placeholder={'your password'} className={s.authInput}/>
-                <Button buttonName={'Log In'} className={s.LogInButton}/>
+                <Button buttonName={'Log in'} className={s.LogInButton}/>
             </div>
 
     );
