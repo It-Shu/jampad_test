@@ -1,0 +1,144 @@
+.vacanciesPage {
+  display: flex;
+  flex-direction: column;
+
+  .header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  .general {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+    .vacancy {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: 15%;
+      .smallTitle{
+        margin: 0;
+        font-size: small;
+        opacity: 0.5;
+      }
+      .title{
+        margin: 0;
+        font-size: large;
+        font-weight: bold;
+      }
+      .vacancyEdit {
+        display: flex;
+        flex-direction: column;
+        margin-top: 20px;
+
+        .vacancyEditBlock {
+          border-radius: 10px;
+          box-shadow: 0.5px 1px 3px 1px #575757;
+          padding: 10px 10px;
+
+          .vacancyEditSlide {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+          }
+
+          .dots {
+            text-align: center;
+          }
+        }
+
+
+        .vacancyButtons {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          margin-top: 20px;
+
+          .editButton {
+            border: none;
+            background-color: #FED614;
+            border-radius: 5px;
+            padding: 5px 15px;
+          }
+
+          .editButton:hover {
+            box-shadow: 0.5px 1px 3px 1px #575757;
+          }
+
+          .editButton:active {
+            background-color: #FED614;
+            box-shadow: 0 0;
+          }
+
+          .downloadButton {
+            border: none;
+            background-color: #fff;
+            border-radius: 5px;
+            padding: 5px 15px;
+          }
+
+          .downloadButton:hover {
+            box-shadow: 0.5px 1px 3px 1px #575757;
+          }
+
+          .downloadButton:active {
+            background-color: #fff;
+            box-shadow: 0 0;
+          }
+        }
+      }
+    }
+
+    .statistic {
+      display: flex;
+      flex-direction: column;
+
+      .progressStatistics {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        .currentStage {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-around;
+
+          .currentStagePassed {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            background-color: #1154E7;
+          }
+
+          .currentStageUnsuccessful {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            background-color: #FE1B3A;
+          }
+
+          .currentStageOverall {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            background-color: #38383866;
+          }
+        }
+      }
+
+      .Leaderboard {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+
+      }
+
+    }
+  }
+}
+
+
+
+
