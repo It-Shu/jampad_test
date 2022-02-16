@@ -20,12 +20,33 @@ export const Vacancies = () => {
             </div>
             <div className={s.general}>
                 <div className={s.statistic}>
-                    <p>Funnel-progress statistics</p>
+                    <p className={s.title}>Funnel-progress statistics</p>
                     <div className={s.progressStatistics}>
 
-                        <div>graphic</div>
+                        <div className={s.graphic}>
+                            <hr/>
+                            <hr/>
+                            <hr/>
+                            <hr/>
+                            <hr/>
+                            <hr/>
+                            <hr/>
+                            <hr/>
+                            <hr/>
+                            <hr/>
+                            <hr/>
+                            <hr/>
+                            <hr/>
+                            <hr/>
+                            <hr/>
+                            <hr/>
+                            <hr/>
+                            <hr/>
+                            <hr/>
+                            <hr/>
+                        </div>
                         <div className={s.currentStage}>
-                            <p>At the current stage:</p>
+                            <p className={s.smallTitle}>At the current stage:</p>
                             <div className={s.currentStagePassed}>
                                <div className={s.iconBlock}> <img className={s.icon} src={checkMark} alt="checkMarkIcon"/></div>
                                 <div>

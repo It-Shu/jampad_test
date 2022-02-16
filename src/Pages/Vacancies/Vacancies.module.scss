@@ -11,7 +11,7 @@
   .general {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-evenly;
 
     .smallTitle {
       margin: 0;
@@ -31,7 +31,6 @@
       justify-content: center;
       width: 17%;
       margin-top: 5%;
-
 
 
       .vacancyEdit {
@@ -160,20 +159,30 @@
     .statistic {
       display: flex;
       flex-direction: column;
+      margin-top: 5%;
 
       .progressStatistics {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
 
+        .graphic{
+          box-shadow: 0.5px 1px 3px 1px #ababab;
+          border-radius: 10px;
+          width: 40%;
+          //height: 30%;
+        }
+
         .currentStage {
           display: flex;
           flex-direction: column;
           justify-content: space-between;
-.iconBlock{
-  display: flex;
-  align-items: center;
-}
+
+          .iconBlock {
+            display: flex;
+            align-items: center;
+          }
+
           .icon {
             width: 30px;
             height: 30px;
