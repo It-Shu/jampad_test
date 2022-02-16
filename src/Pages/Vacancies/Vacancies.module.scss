@@ -13,6 +13,18 @@
     flex-direction: row;
     justify-content: space-around;
 
+    .smallTitle {
+      margin: 0;
+      font-size: small;
+      opacity: 0.5;
+    }
+
+    .title {
+      margin: 0;
+      font-size: large;
+      font-weight: bold;
+    }
+
     .vacancy {
       display: flex;
       flex-direction: column;
@@ -20,17 +32,7 @@
       width: 17%;
       margin-top: 5%;
 
-      .smallTitle {
-        margin: 0;
-        font-size: small;
-        opacity: 0.5;
-      }
 
-      .title {
-        margin: 0;
-        font-size: large;
-        font-weight: bold;
-      }
 
       .vacancyEdit {
         display: flex;
@@ -39,7 +41,7 @@
 
         .vacancyEditBlock {
           border-radius: 10px;
-          box-shadow: 0.5px 1px 3px 1px #575757;
+          box-shadow: 0.5px 1px 3px 1px #ababab;
           padding: 10px 10px;
 
           .vacancyEditSlide {
@@ -68,7 +70,7 @@
           }
 
           .editButton:hover {
-            box-shadow: 0.5px 1px 3px 1px #575757;
+            box-shadow: 0.5px 1px 3px 1px #ababab;
           }
 
           .editButton:active {
@@ -84,7 +86,7 @@
           }
 
           .downloadButton:hover {
-            box-shadow: 0.5px 1px 3px 1px #575757;
+            box-shadow: 0.5px 1px 3px 1px #ababab;
           }
 
           .downloadButton:active {
@@ -131,7 +133,7 @@
           }
 
           .openVacanciesBlock:hover {
-            box-shadow: 0.5px 1px 3px 1px #575757;
+            box-shadow: 0.5px 1px 3px 1px #ababab;
           }
 
         }
@@ -145,7 +147,7 @@
         }
 
         .newVacancyButton:hover {
-          box-shadow: 0.5px 1px 3px 1px #575757;
+          box-shadow: 0.5px 1px 3px 1px #ababab;
         }
 
         .newVacancyButton:active {
@@ -167,27 +169,41 @@
         .currentStage {
           display: flex;
           flex-direction: column;
-          justify-content: space-around;
+          justify-content: space-between;
+.iconBlock{
+  display: flex;
+  align-items: center;
+}
+          .icon {
+            width: 30px;
+            height: 30px;
+          }
 
           .currentStagePassed {
             display: flex;
             flex-direction: row;
             justify-content: space-around;
-            background-color: #1154E7;
+            border-radius: 10px;
+            box-shadow: 0.5px 1px 3px 1px #ababab;
+
           }
 
           .currentStageUnsuccessful {
             display: flex;
             flex-direction: row;
             justify-content: space-around;
-            background-color: #FE1B3A;
+            border-radius: 10px;
+            box-shadow: 0.5px 1px 3px 1px #ababab;
+            margin-top: 15px;
           }
 
           .currentStageOverall {
             display: flex;
             flex-direction: row;
             justify-content: space-around;
-            background-color: #38383866;
+            border-radius: 10px;
+            box-shadow: 0.5px 1px 3px 1px #ababab;
+            margin-top: 15px;
           }
         }
       }

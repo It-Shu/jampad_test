@@ -1,5 +1,8 @@
 import React from 'react';
 import s from './Vacancies.module.scss'
+import checkMark from '../../assets/images/check-mark.png'
+import cross from '../../assets/images/cross.png'
+import circle from '../../assets/images/circle.png'
 
 export const Vacancies = () => {
 
@@ -24,26 +27,26 @@ export const Vacancies = () => {
                         <div className={s.currentStage}>
                             <p>At the current stage:</p>
                             <div className={s.currentStagePassed}>
-                                <div>Галочка</div>
+                               <div className={s.iconBlock}> <img className={s.icon} src={checkMark} alt="checkMarkIcon"/></div>
                                 <div>
-                                    <div>77</div>
-                                    <p>Passed</p>
+                                    <div className={s.title}>77</div>
+                                    <p className={s.smallTitle}>Passed</p>
                                 </div>
 
                             </div>
                             <div className={s.currentStageUnsuccessful}>
-                                <div>Крестик</div>
+                               <div className={s.iconBlock}><img className={s.icon} src={cross} alt="crossIcon"/></div>
                                 <div>
-                                    <div>707</div>
-                                    <p>Unsuccessful</p>
+                                    <div className={s.title}>707</div>
+                                    <p className={s.smallTitle}>Unsuccessful</p>
                                 </div>
 
                             </div>
                             <div className={s.currentStageOverall}>
-                                <div>Пустой круг</div>
+                               <div className={s.iconBlock}><img className={s.icon} src={circle} alt="circleIcon"/></div>
                                 <div>
-                                    <div>784</div>
-                                    <p>Overall</p>
+                                    <div className={s.title}>784</div>
+                                    <p className={s.smallTitle}>Overall</p>
                                 </div>
 
                             </div>
