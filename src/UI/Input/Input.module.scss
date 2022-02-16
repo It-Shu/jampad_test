@@ -1,20 +1,20 @@
-.input{
+.input {
   border: none;
   width: 400px;
   height: 36px;
   margin-top: 5px;
   margin-bottom: 10px;
-  outline:none;
+  outline: none;
   background: transparent;
   border-bottom: 1px solid #777777;
 }
 
-.inputBlock{
+.inputBlock {
   display: flex;
   flex-direction: row;
 }
 
-.mailIcon{
+.mailIcon {
   width: 27px;
   height: 27px;
   margin-left: -25px;

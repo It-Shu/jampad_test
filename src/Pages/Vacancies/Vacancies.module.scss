@@ -17,17 +17,21 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      width: 15%;
-      .smallTitle{
+      width: 17%;
+      margin-top: 5%;
+
+      .smallTitle {
         margin: 0;
         font-size: small;
         opacity: 0.5;
       }
-      .title{
+
+      .title {
         margin: 0;
         font-size: large;
         font-weight: bold;
       }
+
       .vacancyEdit {
         display: flex;
         flex-direction: column;
@@ -60,7 +64,7 @@
             border: none;
             background-color: #FED614;
             border-radius: 5px;
-            padding: 5px 15px;
+            padding: 7px 30px;
           }
 
           .editButton:hover {
@@ -87,6 +91,66 @@
             background-color: #fff;
             box-shadow: 0 0;
           }
+        }
+      }
+
+      .openVacancies {
+        margin-top: 30%;
+
+        .openVacanciesHeader {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-around;
+
+          .input {
+            border: none;
+            outline: none;
+            border-bottom: 1px solid #777777;
+          }
+
+        }
+
+        .openVacanciesBlocks {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-around;
+          height: 100%;
+
+          .openVacanciesBlock {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+            border-radius: 10px;
+
+            padding: 5px 5px;
+
+            .arrow {
+              display: flex;
+              align-items: center;
+            }
+          }
+
+          .openVacanciesBlock:hover {
+            box-shadow: 0.5px 1px 3px 1px #575757;
+          }
+
+        }
+
+        .newVacancyButton {
+          border: none;
+          background-color: #FED614;
+          border-radius: 5px;
+          padding: 10px 0 10px 0;
+          width: 100%;
+        }
+
+        .newVacancyButton:hover {
+          box-shadow: 0.5px 1px 3px 1px #575757;
+        }
+
+        .newVacancyButton:active {
+          background-color: #FED614;
+          box-shadow: 0 0;
         }
       }
     }
