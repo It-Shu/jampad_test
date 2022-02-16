@@ -1,29 +1,33 @@
 import React, {ChangeEvent, DetailedHTMLProps, FC, InputHTMLAttributes, KeyboardEvent, useState} from 'react'
 import s from './Input.module.scss'
 import {EyeIcon} from "../../Pages/Icons/EyeIcon";
+import mail from "../../assets/images/message.png";
+import mailActive from "../../assets/images/messageActive.png";
 
 type DefaultInputPropsType = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>
 
 type InputTextProps = DefaultInputPropsType & {
-    onChangeText?: (value: string) => void
     onEnter?: () => void
     error?: string
     spanClassName?: string
     password?: boolean
+    email?: boolean
     placeholder?: string
+    inputValue?: string
 }
 
 export const Input: FC<InputTextProps> = props => {
     const {
         type,
         onChange,
-        onChangeText,
         onKeyPress,
         onEnter,
         error,
         className,
         spanClassName,
         password,
+        email,
+        inputValue,
         placeholder,
         ...restProps
     } = props
@@ -32,16 +36,17 @@ export const Input: FC<InputTextProps> = props => {
 
     const onChangeCallback = (e: ChangeEvent<HTMLInputElement>) => {
         onChange && onChange(e)
-        onChangeText && onChangeText(e.currentTarget.value)
     }
 
     const onKeyPressCallback = (e: KeyboardEvent<HTMLInputElement>) => {
-        onKeyPress && onKeyPress(e)
         onEnter && e.key === 'Enter' && onEnter()
     }
 
-    // const inputClassNames = `${s.input}${error ? s.errorInput : ''}${className ? className : ''}`
-    // const spanClassNames = `${s.error}${spanClassName ? spanClassName : ''}`
+
+    const inputMailIcon = () => {
+        return inputValue === '' ? mail : mailActive
+    }
+
 
     return (
         <div className={s.inputBlock}>
@@ -52,9 +57,8 @@ export const Input: FC<InputTextProps> = props => {
                 className={s.input}
                 placeholder={placeholder}
                 {...restProps}/>
-            {/*<div className={s.eye} onClick={() => setIsPassword(!isPassword)}><EyeIcon/></div>*/}
+            {email && <img src={inputMailIcon()} alt="mailIcon" className={s.mailIcon}/>}
             {password && <div className={s.eye} onClick={() => setIsPassword(!isPassword)}><EyeIcon/></div>}
-            {/*{error && <span className={spanClassName}>{error}</span>}*/}
         </div>
     )
 }

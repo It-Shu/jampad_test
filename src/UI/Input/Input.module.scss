@@ -14,9 +14,15 @@
   flex-direction: row;
 }
 
+.mailIcon{
+  width: 27px;
+  height: 27px;
+  margin-left: -25px;
+}
+
 .eye {
   color: var(--dark);
-  margin-left: -20px;
+  margin-left: -25px;
   //position: absolute;
   //right: 16px;
   //top: 8px;
