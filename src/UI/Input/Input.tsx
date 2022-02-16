@@ -13,8 +13,9 @@ type InputTextProps = DefaultInputPropsType & {
     placeholder?: string
 }
 
-export const  Input: FC<InputTextProps> = props => {
+export const Input: FC<InputTextProps> = props => {
     const {
+        type,
         onChange,
         onChangeText,
         onKeyPress,
@@ -43,15 +44,17 @@ export const  Input: FC<InputTextProps> = props => {
     // const spanClassNames = `${s.error}${spanClassName ? spanClassName : ''}`
 
     return (
-        <div >
-            <input onChange={onChangeCallback}
-                   onKeyPress={onKeyPressCallback}
-                   className={s.input}
-                   placeholder={placeholder}
-                   {...restProps}/>
-            <div className={s.eye} onClick={() => setIsPassword(!isPassword)}><EyeIcon/></div>
+        <div className={s.inputBlock}>
+            <input
+                type={password && isPassword ? 'text' : type}
+                onChange={onChangeCallback}
+                onKeyPress={onKeyPressCallback}
+                className={s.input}
+                placeholder={placeholder}
+                {...restProps}/>
+            {/*<div className={s.eye} onClick={() => setIsPassword(!isPassword)}><EyeIcon/></div>*/}
             {password && <div className={s.eye} onClick={() => setIsPassword(!isPassword)}><EyeIcon/></div>}
-            {/*{error && <span className={spanClassNames}>{error}</span>}*/}
+            {/*{error && <span className={spanClassName}>{error}</span>}*/}
         </div>
     )
 }

@@ -33,3 +33,16 @@ export const isLoggedIn = (status: boolean) => ({
 } as const)
 
 
+// export const login = (loginData: LoginData) => async (dispatch: AppDispatch) => {
+//     try {
+//         dispatch(setAppIsLoading(true))
+//         const response = await authAPI.login(loginData)
+//         dispatch(setUsersInfo(response.data))
+//         dispatch(setIsLoggedIn(true))
+//         dispatch(setAppInfo(`Successful login, ${response.data.name}`))
+//     } catch (e) {
+//         errorsHandler(e, dispatch)
+//     } finally {
+//         dispatch(setAppIsLoading(false))
+//     }
+// }

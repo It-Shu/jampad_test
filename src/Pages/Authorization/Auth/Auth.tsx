@@ -18,6 +18,10 @@ export const Auth = () => {
         e.preventDefault()
     }
 
+    const buttonDisabled = () => {
+        return !values.email || !values.password
+    }
+
     return (
         <div className={s.authPage}>
             <Welcome/>
@@ -46,7 +50,7 @@ export const Auth = () => {
                                onChange={e => setValues({...values, password: e.currentTarget.value})}/>
                     </label>
                     <NavLink to={PATH.VACANCIES}>
-                        <Button buttonName={'Log in'} className={s.LogInButton}/>
+                        <Button disabled={buttonDisabled()} buttonName={'Log in'} className={s.LogInButton}/>
                     </NavLink>
                 </form>
             </div>
