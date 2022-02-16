@@ -4,4 +4,19 @@
   height: 36px;
   margin-top: 5px;
   margin-bottom: 10px;
+  outline:none;
+  background: transparent;
+  border-bottom: 1px solid #777777;
+}
+
+.eye {
+  color: var(--dark);
+  position: absolute;
+  right: 16px;
+  top: 8px;
+  cursor: pointer;
+}
+
+.eye:hover {
+  opacity: 0.8;
 }

@@ -1,17 +1,32 @@
+.authPage{
+  display: flex;
+  //flex-direction: row;
+  //justify-content: space-between;
+  //align-items: center;
+  //height: 100vh;
+}
+
 .authBlock{
   display: flex;
   flex-direction: column;
-
+  margin: auto;
 }
 
 .authTitle {
   font-size: xx-large;
 }
 
+.inputTitle{
+  font-size: small;
+  margin: 0;
+  opacity: 0.3;
+}
+
 .LogInButton {
   border: none;
   background-color: #FED614;
   border-radius: 5px;
+  margin-top: 30px;
   width: 100%;
   height: 36px;
 }

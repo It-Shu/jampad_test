@@ -1,5 +1,6 @@
-import React, {ChangeEvent, DetailedHTMLProps, FC, InputHTMLAttributes, KeyboardEvent} from 'react'
+import React, {ChangeEvent, DetailedHTMLProps, FC, InputHTMLAttributes, KeyboardEvent, useState} from 'react'
 import s from './Input.module.scss'
+import {EyeIcon} from "../../Pages/Icons/EyeIcon";
 
 type DefaultInputPropsType = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>
 
@@ -9,7 +10,7 @@ type InputTextProps = DefaultInputPropsType & {
     error?: string
     spanClassName?: string
     password?: boolean
-    placeholder: string
+    placeholder?: string
 }
 
 export const  Input: FC<InputTextProps> = props => {
@@ -25,6 +26,8 @@ export const  Input: FC<InputTextProps> = props => {
         placeholder,
         ...restProps
     } = props
+
+    const [isPassword, setIsPassword] = useState(!password)
 
     const onChangeCallback = (e: ChangeEvent<HTMLInputElement>) => {
         onChange && onChange(e)
@@ -46,6 +49,8 @@ export const  Input: FC<InputTextProps> = props => {
                    className={s.input}
                    placeholder={placeholder}
                    {...restProps}/>
+            <div className={s.eye} onClick={() => setIsPassword(!isPassword)}><EyeIcon/></div>
+            {password && <div className={s.eye} onClick={() => setIsPassword(!isPassword)}><EyeIcon/></div>}
             {/*{error && <span className={spanClassNames}>{error}</span>}*/}
         </div>
     )
