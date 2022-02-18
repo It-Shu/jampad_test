@@ -1,4 +1,4 @@
-import React, {FC , useState} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import {NavLink} from "react-router-dom";
 import {PATH} from "../../routes/routes";
 import s from './Dashboard.module.scss'
@@ -10,6 +10,29 @@ type DashboardPropsType = {}
 export const Dashboard: FC<DashboardPropsType> = (props) => {
 
     const {} = props
+
+
+    useEffect(() => {
+
+        let element: HTMLElement | null = document.querySelector('#moveDiv')
+
+        let offsetX: number
+        let offsetY: number
+        element!.addEventListener('dragstart', (e: any) => {
+            // e.preventDefault()
+
+            offsetX = e.offsetX
+            offsetY = e.offsetY
+        })
+
+        element!.addEventListener('dragend', (e: any) => {
+            // e.preventDefault()
+
+            element!.style.top = (e.pageY - offsetY) + 'px'
+            element!.style.left = (e.pageX - offsetX) + 'px'
+        })
+
+    }, [])
 
     const [card, setCard] = useState([
         {id: 1, title: 'Screening resume'},
@@ -70,7 +93,6 @@ export const Dashboard: FC<DashboardPropsType> = (props) => {
     // })
 
 
-
     return (
         <div className={s.dashboardPage}>
             <div className={s.dashboardPage__header}>
@@ -89,15 +111,20 @@ export const Dashboard: FC<DashboardPropsType> = (props) => {
             </div>
             <div className={s.dashboardPage__cardBlock}>
                 {/*<div id={'moveDiv'}>*/}
-                    <div id={'moveDiv'} draggable={true} className={s.dashboardPage__cardBlock__generalOpenCard}>Vacancy is <br/> OPEN</div>
+                <div id={'moveDiv'} draggable={true} className={s.dashboardPage__cardBlock__generalOpenCard}>Vacancy
+                    is <br/> OPEN
+                </div>
                 {/*</div>*/}
                 {/*<div>*/}
-                    {card.map(card => {
-                    return <div id={'moveDiv'} draggable={true} className={s.dashboardPage__cardBlock__card}>{card.title}</div>
+                {card.map(card => {
+                    return <div id={'moveDiv'} draggable={true}
+                                className={s.dashboardPage__cardBlock__card}>{card.title}</div>
                 })}
                 {/*</div>*/}
                 {/*<div id={'moveDiv'}>*/}
-                    <div id={'moveDiv'} draggable={true} className={s.dashboardPage__cardBlock__generalClosedCar}>Vacancy is <br/> CLOSED</div>
+                <div id={'moveDiv'} draggable={true} className={s.dashboardPage__cardBlock__generalClosedCar}>Vacancy
+                    is <br/> CLOSED
+                </div>
                 {/*</div>*/}
 
 
