@@ -6,11 +6,13 @@ import {Vacancies} from "../Pages/Vacancies/Vacancies";
 import {Dashboard} from "../Pages/Dashboard/Dashboard";
 
 export const AppRouter = () => {
+
+
     return (
         <Routes>
             <Route key={PATH.AUTH} path={PATH.AUTH} element={<Auth/>}/>
-            <Route path={PATH.VACANCIES} element={<Vacancies/>}/>
-            <Route path={PATH.DASHBOARD} element={<Dashboard/>}/>
+            <Route path={PATH.VACANCIES} element={<Vacancies />}/>
+            <Route path={PATH.DASHBOARD} element={<Dashboard />}/>
         </Routes>
     );
 };

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {FC} from 'react';
 import s from './Vacancies.module.scss'
 import checkMark from '../../assets/images/check-mark.png'
 import cross from '../../assets/images/cross.png'
@@ -6,8 +6,11 @@ import circle from '../../assets/images/circle.png'
 import {NavLink} from 'react-router-dom';
 import {PATH} from "../../routes/routes";
 
-export const Vacancies = () => {
+type VacanciesPropsType = {}
 
+export const Vacancies: FC<VacanciesPropsType> = (props) => {
+
+    const {} = props
 
     return (
         <div className={s.vacanciesPage}>
@@ -18,7 +21,7 @@ export const Vacancies = () => {
                         <button className={s.header__buttons}>DashBoard</button>
                     </NavLink>
                     <NavLink to={PATH.VACANCIES}>
-                        <button className={s.header__buttons}>Vacancies</button>
+                        <button className={s.header__button__pathActive}>Vacancies</button>
                     </NavLink>
 
                     <button className={s.header__buttons}>Testings</button>

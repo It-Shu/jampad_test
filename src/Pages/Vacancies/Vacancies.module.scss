@@ -21,12 +21,35 @@
 
     .header__buttons:hover {
       box-shadow: 0.5px 1px 3px 1px #ababab;
+      transition: 0.2s;
     }
 
     .header__buttons:active {
       background-color: #ffffff;
       box-shadow: 0 0;
+      transition: 0.1s;
     }
+
+
+      .header__button__pathActive{
+        border: none;
+        background-color: #ffffff;
+        border-radius: 5px;
+        padding: 7px 30px;
+        margin-left: 5px;
+        box-shadow: 0.5px 1px 3px 1px #ababab;
+      }
+
+      .header__button__pathActive:hover {
+        box-shadow: 0.5px 2px 3px 2px #ababab;
+        transition: 0.2s;
+      }
+
+      .header__button__pathActive:active {
+        background-color: #ffffff;
+        box-shadow: 0 0;
+        transition: 0.1s;
+      }
   }
 
   .general {
@@ -46,13 +69,13 @@
       font-weight: bold;
     }
 
+
     .vacancy {
       display: flex;
       flex-direction: column;
       justify-content: center;
       width: 17%;
       margin-top: 5%;
-
 
       .vacancyEdit {
         display: flex;
@@ -91,11 +114,13 @@
 
           .editButton:hover {
             box-shadow: 0.5px 1px 3px 1px #ababab;
+            transition: 0.2s;
           }
 
           .editButton:active {
             background-color: #FED614;
             box-shadow: 0 0;
+            transition: 0.2s;
           }
 
           .downloadButton {
@@ -107,11 +132,13 @@
 
           .downloadButton:hover {
             box-shadow: 0.5px 1px 3px 1px #ababab;
+            transition: 0.2s;
           }
 
           .downloadButton:active {
             background-color: #fff;
             box-shadow: 0 0;
+            transition: 0.2s;
           }
         }
       }
@@ -154,6 +181,7 @@
 
           .openVacanciesBlock:hover {
             box-shadow: 0.5px 1px 3px 1px #ababab;
+            transition: 0.3s;
           }
 
         }
@@ -168,11 +196,13 @@
 
         .newVacancyButton:hover {
           box-shadow: 0.5px 1px 3px 1px #ababab;
+          transition: 0.2s;
         }
 
         .newVacancyButton:active {
           background-color: #FED614;
           box-shadow: 0 0;
+          transition: 0.2s;
         }
       }
     }
