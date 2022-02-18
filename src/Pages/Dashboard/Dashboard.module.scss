@@ -65,6 +65,8 @@
 
 
 .dashboardPage__cardBlock{
+  display: flex;
+  flex-direction: column;
   align-items: center;
   align-self: center;
   margin-left: -60%;
@@ -73,7 +75,7 @@
 .dashboardPage__cardBlock__generalOpenCard{
   position: absolute;
   top: 30%;
-  left: 35%;
+  left: 34%;
   background-color: #000000;
   color: white;
   text-align: center;
@@ -86,7 +88,7 @@
 .dashboardPage__cardBlock__generalClosedCar{
   position: absolute;
   top: 70%;
-  left: 35%;
+  left: 34%;
   background-color: #000000;
   color: white;
   text-align: center;
@@ -97,20 +99,27 @@
 }
 
 .dashboardPage__cardBlock__card {
+  //position: absolute;
+  //top: 50%;
+  //left: 35%;
+  align-items: center;
+  margin: 25px;
   background-color: #ffffff;
   border-radius: 5px;
   text-align: center;
   padding: 7px 30px;
-  margin: 25px;
   box-shadow: 0.5px 1px 3px 1px #ababab;
   cursor: grab;
 }
 
-
-#moveDiv {
-  position: absolute;
-  z-index: 9;
-  background-color: #f1f1f1;
+.dashboardPage__cardBlock__card:active{
+  //position: absolute;
+  //top: 50%;
+  //left: 35%;
+  border-radius: 5px;
   text-align: center;
-  border: 1px solid #d3d3d3;
+  padding: 7px 30px;
+  box-shadow: 0.5px 1px 3px 1px #ababab;
+  cursor: grab;
+  background-color: #FED614;
 }

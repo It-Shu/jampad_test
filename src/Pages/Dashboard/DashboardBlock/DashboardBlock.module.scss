@@ -98,3 +98,12 @@
   margin: 0 0 20px 20px;
   text-align: center;
 }
+
+.dashboardBlock__components__interview__block:active{
+  border-radius: 10px;
+  box-shadow: 0.5px 1px 3px 1px #ababab;
+  padding: 10px 10px;
+  margin: 0 0 20px 20px;
+  text-align: center;
+  cursor: grab;
+}

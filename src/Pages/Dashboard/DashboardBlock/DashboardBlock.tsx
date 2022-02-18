@@ -1,7 +1,16 @@
-import React from 'react';
+import React, {FC} from 'react';
 import s from './DashboardBlock.module.scss'
 
-export function DashboardBlock() {
+type DashboardBlockPropsType = {
+    cards: {id: string, title: string}[]
+}
+
+export const DashboardBlock: FC<DashboardBlockPropsType> = (props) => {
+
+    const {
+        cards,
+    } = props
+
     return (
         <div className={s.dashboardBlock}>
             <div className={s.dashboardBlock__userName}>User Name</div>
@@ -21,18 +30,25 @@ export function DashboardBlock() {
                 </div>
                 <p className={s.dashboardBlock__mediumTitle}>Interview</p>
                 <div className={s.dashboardBlock__components__interview}>
-                    <div className={s.dashboardBlock__components__interview__block}>
-                        Basic <br/>Interview
-                    </div>
-                    <div className={s.dashboardBlock__components__interview__block}>
-                        Interview <br/>with others
-                    </div>
-                    <div className={s.dashboardBlock__components__interview__block}>
-                        Group <br/> interview
-                    </div>
-                    <div className={s.dashboardBlock__components__interview__block}>
-                        All-video<br/> interview
-                    </div>
+                    {/*<div className={s.dashboardBlock__components__interview__block}>*/}
+                    {/*    Basic <br/>Interview*/}
+                    {/*</div>*/}
+                    {/*<div className={s.dashboardBlock__components__interview__block}>*/}
+                    {/*    Interview <br/>with others*/}
+                    {/*</div>*/}
+                    {/*<div className={s.dashboardBlock__components__interview__block}>*/}
+                    {/*    Group <br/> interview*/}
+                    {/*</div>*/}
+                    {/*<div className={s.dashboardBlock__components__interview__block}>*/}
+                    {/*    All-video<br/> interview*/}
+                    {/*</div>*/}
+                    {cards.map(card => {
+                        return <div
+                            className={s.dashboardBlock__components__interview__block}
+                            draggable={true}>
+                            {card.title}
+                        </div>
+                    })}
                 </div>
             </div>
         </div>
