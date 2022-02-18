@@ -3,6 +3,8 @@ import s from './Vacancies.module.scss'
 import checkMark from '../../assets/images/check-mark.png'
 import cross from '../../assets/images/cross.png'
 import circle from '../../assets/images/circle.png'
+import {NavLink} from 'react-router-dom';
+import {PATH} from "../../routes/routes";
 
 export const Vacancies = () => {
 
@@ -12,11 +14,16 @@ export const Vacancies = () => {
             <div className={s.header}>
                 <div>JamPad</div>
                 <div>
-                    <button>DashBoard</button>
-                    <button>Vacancies</button>
-                    <button>Testings</button>
+                    <NavLink to={PATH.DASHBOARD}>
+                        <button className={s.header__buttons}>DashBoard</button>
+                    </NavLink>
+                    <NavLink to={PATH.VACANCIES}>
+                        <button className={s.header__buttons}>Vacancies</button>
+                    </NavLink>
+
+                    <button className={s.header__buttons}>Testings</button>
                 </div>
-                <div>User Name</div>
+                <div className={s.header__userName}>User Name</div>
             </div>
             <div className={s.general}>
                 <div className={s.statistic}>
@@ -47,25 +54,27 @@ export const Vacancies = () => {
                         </div>
                         <div className={s.currentStage}>
                             <p className={s.smallTitle}>At the current stage:</p>
-                            <div className={s.currentStagePassed}>
-                               <div className={s.iconBlock}> <img className={s.icon} src={checkMark} alt="checkMarkIcon"/></div>
-                                <div>
+                            <div className={s.currentStageBlock}>
+                                <div className={s.iconBlock}><img className={s.icon} src={checkMark}
+                                                                  alt="checkMarkIcon"/></div>
+                                <div className={s.currentStageScore}>
                                     <div className={s.title}>77</div>
                                     <p className={s.smallTitle}>Passed</p>
                                 </div>
 
                             </div>
-                            <div className={s.currentStageUnsuccessful}>
-                               <div className={s.iconBlock}><img className={s.icon} src={cross} alt="crossIcon"/></div>
-                                <div>
+                            <div className={s.currentStageBlock}>
+                                <div className={s.iconBlock}><img className={s.icon} src={cross} alt="crossIcon"/></div>
+                                <div className={s.currentStageScore}>
                                     <div className={s.title}>707</div>
                                     <p className={s.smallTitle}>Unsuccessful</p>
                                 </div>
 
                             </div>
-                            <div className={s.currentStageOverall}>
-                               <div className={s.iconBlock}><img className={s.icon} src={circle} alt="circleIcon"/></div>
-                                <div>
+                            <div className={s.currentStageBlock}>
+                                <div className={s.iconBlock}><img className={s.icon} src={circle} alt="circleIcon"/>
+                                </div>
+                                <div className={s.currentStageScore}>
                                     <div className={s.title}>784</div>
                                     <p className={s.smallTitle}>Overall</p>
                                 </div>
@@ -73,13 +82,13 @@ export const Vacancies = () => {
                             </div>
                         </div>
                     </div>
-                    <p>Leaderboard</p>
-                    <p>Three best-performing candidates are:</p>
+                    <p className={s.title}>Leaderboard</p>
+                    <p className={s.smallTitle}>Three best-performing candidates are:</p>
                     <div className={s.Leaderboard}>
-                        <div>John Smith</div>
-                        <div>Mitchel Darras</div>
-                        <div>Sofia Linde</div>
-                        <div>Also:</div>
+                        <div className={s.LeaderboardBlock}>John Smith</div>
+                        <div className={s.LeaderboardBlock}>Mitchel Darras</div>
+                        <div className={s.LeaderboardBlock}>Sofia Linde</div>
+                        <div className={s.LeaderboardBlock}>Also:</div>
                     </div>
                 </div>
 

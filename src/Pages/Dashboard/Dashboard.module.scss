@@ -1,0 +1,42 @@
+.dashboardPage{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background: linear-gradient( #bbb, transparent 1px), linear-gradient( 90deg, #bbb, transparent 1px);
+  background-size: 105px 105px;
+  background-position: center center;
+}
+
+.dashboardPage__header {
+  display: flex;
+  flex-direction: row;
+  //width: 100%;
+  margin-left: 5%;
+  margin-top: 25px;
+}
+
+.dashboardPage__header__logo{
+  //margin-left: 10.5%;
+}
+
+.dashboardPage__header__buttons{
+  margin-left: 472px;
+}
+
+
+.dashboardPage__header__button {
+  border: none;
+  background-color: #ffffff;
+  border-radius: 5px;
+  padding: 7px 30px;
+  margin-left: 5px;
+}
+
+.dashboardPage__header__button:hover {
+  box-shadow: 0.5px 1px 3px 1px #ababab;
+}
+
+.dashboardPage__header__button:active {
+  background-color: #ffffff;
+  box-shadow: 0 0;
+}

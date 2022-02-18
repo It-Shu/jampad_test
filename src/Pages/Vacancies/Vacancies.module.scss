@@ -2,16 +2,37 @@
   display: flex;
   flex-direction: column;
 
+
   .header {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
+    //margin-right: 20px;
+    //margin-top: 25px;
+    margin: 25px 20px 0 5%;
+
+    .header__buttons {
+      border: none;
+      background-color: #ffffff;
+      border-radius: 5px;
+      padding: 7px 30px;
+      margin-left: 5px;
+    }
+
+    .header__buttons:hover {
+      box-shadow: 0.5px 1px 3px 1px #ababab;
+    }
+
+    .header__buttons:active {
+      background-color: #ffffff;
+      box-shadow: 0 0;
+    }
   }
 
   .general {
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: space-around;
 
     .smallTitle {
       margin: 0;
@@ -106,7 +127,7 @@
           .input {
             border: none;
             outline: none;
-            border-bottom: 1px solid #777777;
+            border-bottom: 2px solid #c7c7c7;
           }
 
         }
@@ -160,16 +181,19 @@
       display: flex;
       flex-direction: column;
       margin-top: 5%;
+      width: 50%;
 
       .progressStatistics {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
+        margin-top: 20px;
+        margin-bottom: 40px;
 
-        .graphic{
+        .graphic {
           box-shadow: 0.5px 1px 3px 1px #ababab;
           border-radius: 10px;
-          width: 40%;
+          width: 70%;
           //height: 30%;
         }
 
@@ -188,31 +212,21 @@
             height: 30px;
           }
 
-          .currentStagePassed {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-around;
-            border-radius: 10px;
-            box-shadow: 0.5px 1px 3px 1px #ababab;
-
-          }
-
-          .currentStageUnsuccessful {
+          .currentStageBlock {
             display: flex;
             flex-direction: row;
             justify-content: space-around;
             border-radius: 10px;
             box-shadow: 0.5px 1px 3px 1px #ababab;
             margin-top: 15px;
-          }
+            width: 200px;
+            height: 70px;
 
-          .currentStageOverall {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-around;
-            border-radius: 10px;
-            box-shadow: 0.5px 1px 3px 1px #ababab;
-            margin-top: 15px;
+            .currentStageScore {
+              display: flex;
+              flex-direction: column;
+              align-self: center;
+            }
           }
         }
       }
@@ -220,8 +234,18 @@
       .Leaderboard {
         display: flex;
         flex-direction: row;
-        justify-content: space-around;
+        justify-content: space-between;
 
+        .LeaderboardBlock {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-around;
+          border-radius: 10px;
+          box-shadow: 0.5px 1px 3px 1px #ababab;
+          margin-top: 15px;
+          width: 200px;
+          height: 70px;
+        }
       }
 
     }

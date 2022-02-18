@@ -1,7 +1,7 @@
 import React from 'react';
-import {Route, Routes } from 'react-router-dom';
-import { Auth } from '../Pages/Authorization/Auth/Auth';
-import { PATH } from './routes';
+import {Route, Routes} from 'react-router-dom';
+import {Auth} from '../Pages/Authorization/Auth/Auth';
+import {PATH} from './routes';
 import {Vacancies} from "../Pages/Vacancies/Vacancies";
 import {Dashboard} from "../Pages/Dashboard/Dashboard";
 

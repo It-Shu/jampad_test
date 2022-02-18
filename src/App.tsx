@@ -9,13 +9,6 @@ import {AppRouter} from "./routes/AppRouter";
 function App() {
     return (
         <div className={s.app}>
-
-            {/*<div className={s.auth}>*/}
-            {/*    <Auth/>*/}
-            {/*</div>*/}
-            {/*<div>*/}
-            {/*    <Vacancies/>*/}
-            {/*</div>*/}
             <AppRouter/>
         </div>
     );

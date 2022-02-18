@@ -5,21 +5,34 @@ import s from './Auth.module.scss'
 import {Welcome} from "../Welcome/Welcome";
 import {NavLink} from 'react-router-dom';
 import {PATH} from "../../../routes/routes";
+import {useDispatch, useSelector} from "react-redux";
+import {RootState} from "../../../store/store";
+import {setLogin} from "../../../store/reducers/auth-reducer";
+import {LoginData} from "../../../api/auth-api";
+// import {login} from "../../../store/reducers/auth-reducer";
 
 export const Auth = () => {
 
+    // const token = useSelector<RootState, string>(state => state.auth.isLogin)
+    // const dispatch = useDispatch
     const [values, setValues] = useState({
         email: '',
         password: '',
     })
 
+    // console.log(token)
 
     const onSubmit = (e: FormEvent) => {
         e.preventDefault()
+
     }
 
     const buttonDisabled = () => {
         return !values.email || !values.password
+    }
+
+    const isLogin = (payload: LoginData) => {
+        // dispatch(setLogin)
     }
 
     return (
