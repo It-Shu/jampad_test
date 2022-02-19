@@ -1,5 +1,4 @@
 import axios, {AxiosResponse} from "axios"
-import {isLoading, isLoggedIn, isToken} from "../store/reducers/auth-reducer";
 
 
 export const instance = axios.create({
@@ -8,7 +7,6 @@ export const instance = axios.create({
 })
 
 // Interceptors
-
 instance.interceptors.request.use((config) => {
     config.headers!.Authurization = `Bearer ${localStorage.getItem('token')}`
     return config
@@ -38,5 +36,5 @@ export const authAPI = {
         ('hrs/login', {email, password})
 }
 
-// https://api.jampad.ml/api/ui/#/statistics/leaderboard
+// https://api.jampad.ml/api/statistics/leaderboard
 // https://api.jampad.ml/api/hrs/login
