@@ -1,6 +1,6 @@
 import {Dispatch} from "redux"
 import {authAPI, RequestErrorsType, RequestLoginType, ResponseLoginType} from "../../api/auth-api";
-import { AppDispatch } from "../store";
+
 
 
 enum AUTH_ACTIONS_TYPES {
@@ -75,7 +75,7 @@ export const loginError = (errors: RequestErrorsType | null) => ({ // Types for 
 
 
 // Loading before auth
-const isLoading = (loading: boolean) => ({
+export const isLoading = (loading: boolean) => ({
     type: AUTH_ACTIONS_TYPES.IS_LOADING,
     payload: {loading}
 } as const)
@@ -84,34 +84,38 @@ const isLoading = (loading: boolean) => ({
 
 //THUNKS
 
-// export const setLogin = (email: string, password: string) => (dispatch: Dispatch) => {
-//
-//         dispatch(isLoading(true)) // loading before auth
-//         authAPI.Login(email, password) // request
-//             .then((res) => {
-//                 let newToken = dispatch(isToken(res.data.token)) // get token
-//                 console.log(newToken)
-//                 dispatch(isLoggedIn(true)) // login success
-//             })
-//             .catch((e) => {
-//                 dispatch(loginError(e.errors))
-//             })
-//             .finally(() => {
-//                 dispatch(isLoading(false))
-//             })
-// }
-
-export const setLogin = (email: string, password: string) => async (dispatch: AppDispatch) => {
-    try {
-        dispatch(isLoading(true)) // loading before auth
-        const response = await authAPI.Login(email, password) // request
-        // dispatch(isToken(response.data.token))
-        localStorage.setItem('token', response.data.token)
-        dispatch(isLoggedIn(true))
-    } catch (e: any) {
-        console.log(e.response?.data?.errors)
-        loginError(e.errors)
-    } finally {
-        dispatch(isLoading(false))
-    }
+export const setLogin = (email: string, password: string)  => {
+return (dispatch: Dispatch) => {
+    // dispatch(isLoading(true)) // loading before auth
+    authAPI.login(email, password) // request
+        .then((res) => {
+            localStorage.setItem('token', res.data.token)
+            console.log(res.data.token)
+            dispatch(isLoggedIn(true)) // login success
+        })
+    // .catch((e) => {
+    //     dispatch(loginError(e.errors))
+    //     console.log(e.errors)
+    // })
+    // .finally(() => {
+    //     dispatch(isLoading(false))
+    // })
 }
+
+}
+
+// export const setLogin = (email: string, password: string) => async (dispatch: Dispatch) => {
+//     try {
+//         dispatch(isLoading(true)) // loading before auth
+//         const response = await authAPI.Login(email, password) // request
+//         // dispatch(isToken(response.data.token))
+//         localStorage.setItem('token', response.data.token)
+//         console.log(response.data.token)
+//         dispatch(isLoggedIn(true))
+//     } catch (e: any) {
+//         console.log(e.response?.data?.errors)
+//         loginError(e.errors)
+//     } finally {
+//         dispatch(isLoading(false))
+//     }
+// }

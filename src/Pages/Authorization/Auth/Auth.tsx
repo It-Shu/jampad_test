@@ -5,7 +5,6 @@ import s from './Auth.module.scss'
 import {Welcome} from "../Welcome/Welcome";
 import {Navigate} from 'react-router-dom';
 import {PATH} from "../../../routes/routes";
-import {RequestLoginType} from "../../../api/auth-api";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../../store/store";
 import {setLogin} from "../../../store/reducers/auth-reducer";
@@ -17,21 +16,21 @@ export const Auth = () => {
 
     const token = useSelector<RootState, string>(state => state.auth.getToken)
     const isLoggedIn = useSelector<RootState, boolean>(state => state.auth.status)
-    const dispatch = useDispatch
+    const dispatch = useDispatch()
 
     const [email, setEmail] = useState<string>('')
     const [password, setPassword] = useState<string>('')
 
-    useEffect(() => {
+    // useEffect(() => {
+    //
+    // }, [])
 
-        // localStorage.setItem('jamPad', token)
-    }, [])
-    // console.log(token)
 
     const onSubmit = (e: FormEvent) => {
-        // e.preventDefault()
-        // dispatch(setLogin(email, password))
+        e.preventDefault()
+        dispatch(setLogin(email,password))
     }
+
 
 
     const buttonDisabled = () => {
@@ -72,7 +71,7 @@ export const Auth = () => {
                     </label>
                     {/*<NavLink to={PATH.VACANCIES}>*/}
                     <Button
-                        onClick={()=>{setLogin(email, password)}}
+                        // onClick={()=>{setLogin(email, password)}}
                         type={'submit'}
                         disabled={buttonDisabled()}
                         buttonName={'Log in'}

@@ -1,15 +1,15 @@
 import axios, {AxiosResponse} from "axios"
+import {isLoading, isLoggedIn, isToken} from "../store/reducers/auth-reducer";
 
 
 export const instance = axios.create({
-    baseURL: 'https://api.jampad.ml/api',
+    baseURL: 'https://api.jampad.ml/api/',
     withCredentials: true
 })
 
-
 // Interceptors
 
-instance.interceptors.request.use((config)=>{
+instance.interceptors.request.use((config) => {
     config.headers!.Authurization = `Bearer ${localStorage.getItem('token')}`
     return config
 })
@@ -22,7 +22,8 @@ export type RequestLoginType = {
 }
 
 export type ResponseLoginType = {
-   token: string
+    token: string
+    error: RequestErrorsType
 }
 
 export type RequestErrorsType = {
@@ -32,9 +33,9 @@ export type RequestErrorsType = {
 
 
 export const authAPI = {
-    Login: (email: string, password: string) => instance
-        .post<RequestLoginType, AxiosResponse<ResponseLoginType, RequestErrorsType>>
-        ('/hrs/login', {email, password})
+    login: (email: string, password: string) => instance
+        .post<RequestLoginType, AxiosResponse<ResponseLoginType>>
+        ('hrs/login', {email, password})
 }
 
 // https://api.jampad.ml/api/ui/#/statistics/leaderboard
