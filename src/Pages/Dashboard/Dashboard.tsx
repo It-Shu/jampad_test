@@ -14,23 +14,44 @@ export const Dashboard: FC<DashboardPropsType> = (props) => {
 
     useEffect(() => {
 
-        let element: HTMLElement | null = document.querySelector("#moveDiv")
+        let openElement: HTMLElement | null = document.getElementById("moveOPENDiv")
+        let closedElement: HTMLElement | null = document.getElementById("moveCLOSEDiv")
+        let element: HTMLElement | null = document.getElementById("moveDiv")
 
         let offsetX: number
         let offsetY: number
-        element!.addEventListener('dragstart', (e: any) => {
-            // e.preventDefault()
 
+        const dragStart = (e: DragEvent) => {
+            // e.preventDefault()
             offsetX = e.offsetX
             offsetY = e.offsetY
-        })
+        }
 
-        element!.addEventListener('dragend', (e: any) => {
-            // e.preventDefault()
+        const openDragEnd = (e: DragEvent) => {
+            // e.preventDefault() DragEvent
+            openElement!.style.top = (e.pageY - offsetY) + 'px'
+            openElement!.style.left = (e.pageX - offsetX) + 'px'
+        }
 
+        const closedDragEnd = (e: DragEvent) => {
+            closedElement!.style.top = (e.pageY - offsetY) + 'px'
+            closedElement!.style.left = (e.pageX - offsetX) + 'px'
+        }
+        const elementDragEnd = (e: DragEvent) => {
+            // debugger
+            e.preventDefault()
             element!.style.top = (e.pageY - offsetY) + 'px'
             element!.style.left = (e.pageX - offsetX) + 'px'
-        })
+        }
+
+
+        openElement!.addEventListener('dragstart', dragStart)
+        closedElement!.addEventListener('dragstart', dragStart)
+        element!.addEventListener('dragstart', dragStart)
+
+        openElement!.addEventListener('dragend', openDragEnd)
+        closedElement!.addEventListener('dragend', closedDragEnd)
+        element!.addEventListener('dragend', elementDragEnd)
 
     }, [])
 
@@ -64,12 +85,12 @@ export const Dashboard: FC<DashboardPropsType> = (props) => {
             </div>
             <div className={s.dashboardPage__cardBlock}>
 
-                <div id={'moveDiv'} draggable={true} className={s.dashboardPage__cardBlock__generalOpenCard}>Vacancy
+                <div id={'moveOPENDiv'} draggable={true} className={s.dashboardPage__cardBlock__generalOpenCard}>Vacancy
                     is <br/> OPEN
                 </div>
 
                 {card.map(card => {
-                    return <div>
+                    return <div key={card.id}>
                         <div
                             id={'moveDiv'}
                             draggable={true}
@@ -81,7 +102,7 @@ export const Dashboard: FC<DashboardPropsType> = (props) => {
 
                 })}
 
-                <div id={'moveDiv'} draggable={true} className={s.dashboardPage__cardBlock__generalClosedCar}>Vacancy
+                <div id={'moveCLOSEDiv'} draggable={true} className={s.dashboardPage__cardBlock__generalClosedCar}>Vacancy
                     is <br/> CLOSED
                 </div>
 

@@ -43,7 +43,7 @@ export const DashboardBlock: FC<DashboardBlockPropsType> = (props) => {
                     {/*    All-video<br/> interview*/}
                     {/*</div>*/}
                     {cards.map(card => {
-                        return <div
+                        return <div key={card.id}
                             className={s.dashboardBlock__components__interview__block}
                             draggable={true}>
                             {card.title}
