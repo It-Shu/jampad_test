@@ -105,9 +105,11 @@ export const setLogin = (email: string, password: string) => async (dispatch: Ap
     try {
         dispatch(isLoading(true)) // loading before auth
         const response = await authAPI.Login(email, password) // request
-        dispatch(isToken(response.data.token))
+        // dispatch(isToken(response.data.token))
+        localStorage.setItem('token', response.data.token)
         dispatch(isLoggedIn(true))
     } catch (e: any) {
+        console.log(e.response?.data?.errors)
         loginError(e.errors)
     } finally {
         dispatch(isLoading(false))

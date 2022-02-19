@@ -7,6 +7,14 @@ export const instance = axios.create({
 })
 
 
+// Interceptors
+
+instance.interceptors.request.use((config)=>{
+    config.headers!.Authurization = `Bearer ${localStorage.getItem('token')}`
+    return config
+})
+
+
 // TYPES
 export type RequestLoginType = {
     email: string

@@ -19,29 +19,27 @@ export const Auth = () => {
     const isLoggedIn = useSelector<RootState, boolean>(state => state.auth.status)
     const dispatch = useDispatch
 
-    const [values, setValues] = useState<RequestLoginType>({
-        email: '',
-        password: '',
-    })
+    const [email, setEmail] = useState<string>('')
+    const [password, setPassword] = useState<string>('')
 
-    useEffect(()=>{
+    useEffect(() => {
 
-        localStorage.setItem('jamPad', token)
-    },[])
+        // localStorage.setItem('jamPad', token)
+    }, [])
     // console.log(token)
 
     const onSubmit = (e: FormEvent) => {
         // e.preventDefault()
-        // dispatch(setLogin())
+        // dispatch(setLogin(email, password))
     }
 
 
     const buttonDisabled = () => {
-        return !values.email || !values.password
+        return !email || !password
     }
 
     if (isLoggedIn) {
-       return <Navigate to={PATH.VACANCIES}/>
+        return <Navigate to={PATH.VACANCIES}/>
     }
 
     return (
@@ -57,22 +55,28 @@ export const Auth = () => {
                         <Input id={'login-email'}
                                type={'email'}
                                email
-                               value={values.email}
-                               inputValue={values.email}
-                               onChange={e => setValues({...values, email: e.currentTarget.value})}/>
+                               value={email}
+                               inputValue={email}
+                               onChange={e => setEmail(e.currentTarget.value)}
+                            // onChange={e => setValues({...values, email: e.currentTarget.value})}
+                        />
                     </label>
 
                     <label htmlFor='login-password'>
                         <p className={s.inputTitle}>Your password</p>
                         <Input id={'login-password'}
                                type={'password'}
-                               value={values.password}
+                               value={password}
                                password
-                               onChange={e => setValues({...values, password: e.currentTarget.value})}/>
+                               onChange={e => setPassword(e.currentTarget.value)}/>
                     </label>
                     {/*<NavLink to={PATH.VACANCIES}>*/}
-                    <Button type={'submit'} disabled={buttonDisabled()} buttonName={'Log in'}
-                            className={s.LogInButton}/>
+                    <Button
+                        onClick={()=>{setLogin(email, password)}}
+                        type={'submit'}
+                        disabled={buttonDisabled()}
+                        buttonName={'Log in'}
+                        className={s.LogInButton}/>
                     {/*</NavLink>*/}
                 </form>
             </div>
