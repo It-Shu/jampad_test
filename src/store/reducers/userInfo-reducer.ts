@@ -1,5 +1,5 @@
 import {Dispatch} from "redux"
-import {infoApi, UserInfo} from "../../api/info-api";
+import {infoApi} from "../../api/info-api";
 
 enum INFO_ACTIONS_TYPES {
     USER_EMAIL = 'INFO/USER_EMAIL',
