@@ -1,5 +1,5 @@
 import {Dispatch} from "redux"
-import {authAPI, ResponseErrorsType} from "../../api/auth-api";
+import {authAPI} from "../../api/auth-api";
 
 
 enum AUTH_ACTIONS_TYPES {
@@ -97,10 +97,6 @@ export const passwordError = (passwordError: string) => ({ // Types for error : 
 } as const)
 
 
-
-
-
-
 // Loading before auth
 export const isLoading = (loading: boolean) => ({
     type: AUTH_ACTIONS_TYPES.IS_LOADING,
@@ -110,7 +106,6 @@ export const isLoading = (loading: boolean) => ({
 //     hr@gmail.com     12345678qQ    //
 
 //THUNKS
-
 export const setLogin = (email: string, password: string) => {
     return (dispatch: Dispatch) => {
         // dispatch(isLoading(true)) // loading before auth
@@ -124,9 +119,9 @@ export const setLogin = (email: string, password: string) => {
                 dispatch(emailError(e.response.data.email))
                 dispatch(passwordError(e.response.data.password))
                 dispatch(loginError(e.response.data.error))
-                console.log(e.response.data.email)
-                console.log(e.response.data.password)
-                console.log(e.response.data.error)
+                // console.log(e.response.data.email)
+                // console.log(e.response.data.password)
+                // console.log(e.response.data.error)
 
             })
             .finally(() => {

@@ -1,5 +1,8 @@
 import React, {FC} from 'react';
 import s from './DashboardBlock.module.scss'
+import {useSelector} from "react-redux";
+import {RootState} from "../../../store/store";
+import {UserInfo} from "../../../api/info-api";
 
 type DashboardBlockPropsType = {
     cards: {id: string, title: string}[]
@@ -7,13 +10,17 @@ type DashboardBlockPropsType = {
 
 export const DashboardBlock: FC<DashboardBlockPropsType> = (props) => {
 
+    const userEmail = useSelector<RootState, UserInfo | string>(state => state.user.userEmail)
+    const firstName = useSelector<RootState, UserInfo | string>(state => state.user.userFirstName)
+    const lastName = useSelector<RootState, UserInfo | string>(state => state.user.userLastName)
+
     const {
         cards,
     } = props
 
     return (
         <div className={s.dashboardBlock}>
-            <div className={s.dashboardBlock__userName}>User Name</div>
+            <div className={s.dashboardBlock__userName}>{firstName} {lastName}</div>
             <div className={s.dashboardBlock__administrator}>
                 <p className={s.dashboardBlock__smallTitle}>Vacancy:</p>
                 <p className={s.dashboardBlock__title}>System Administrator</p>

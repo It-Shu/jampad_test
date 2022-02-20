@@ -8,14 +8,18 @@ import {PATH} from "../../../routes/routes";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../../store/store";
 import { setLogin} from "../../../store/reducers/auth-reducer";
+import {infoError, setUserInfo} from "../../../store/reducers/userInfo-reducer";
+import {UserInfo} from "../../../api/info-api";
 
 export const Auth = () => {
-
-    const token = useSelector<RootState, string>(state => state.auth.getToken)
+    const userEmail = useSelector<RootState, string>(state => state.user.userEmail)
+    // const token = useSelector<RootState, string>(state => state.auth.getToken)
     const isLoggedIn = useSelector<RootState, boolean>(state => state.auth.status)
     const error = useSelector<RootState, string>(state => state.auth.isError)
     const emailError = useSelector<RootState, string>(state => state.auth.emailError)
     const passwordError = useSelector<RootState, string>(state => state.auth.passwordError)
+    const authError = useSelector<RootState, string>(state => state.user.userInfoError)
+
     const dispatch = useDispatch()
 
     const [email, setEmail] = useState<string>('')
@@ -25,12 +29,13 @@ export const Auth = () => {
     const onSubmit = (e: FormEvent) => {
         e.preventDefault()
         dispatch(setLogin(email,password))
+        dispatch(setUserInfo())
     }
 
 
 
 
-    if (isLoggedIn && localStorage.getItem('token')) {
+    if (isLoggedIn && localStorage.getItem('token') && userEmail) {
         return <Navigate to={PATH.VACANCIES}/>
     }
 
@@ -64,6 +69,7 @@ export const Auth = () => {
                     </label>
                     {error ?  <div className={s.error}>{error}</div> : ''}
                     {passwordError ? <div className={s.error}>{passwordError}</div> : ''}
+                    {authError ? <div className={s.error}>{authError}</div> : ''}
                     <Button
                         type={'submit'}
                         // disabled={buttonDisabled()}

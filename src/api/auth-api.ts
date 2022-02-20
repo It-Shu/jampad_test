@@ -2,13 +2,16 @@ import axios, {AxiosResponse} from "axios"
 
 
 export const instance = axios.create({
+    // headers: {
+    //     "Authorization": ` Bearer ${localStorage.getItem('token')}`
+    // },
     baseURL: 'https://api.jampad.ml/api/',
     withCredentials: true
 })
 
 // Interceptors
 instance.interceptors.request.use((config) => {
-    config.headers!.Authurization = `Bearer ${localStorage.getItem('token')}`
+    config.headers!.Authorization = `Bearer ${localStorage.getItem('token')}`
     return config
 })
 
@@ -24,11 +27,11 @@ export type ResponseLoginType = {
     error: string
 }
 
-export type ResponseErrorsType = [
-    { error: string },
-    { email: string },
-    { password: string }
-]
+// export type ResponseErrorsType = [
+//     { error: string },
+//     { email: string },
+//     { password: string }
+// ]
 
 
 export const authAPI = {

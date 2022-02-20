@@ -5,10 +5,17 @@ import cross from '../../assets/images/cross.png'
 import circle from '../../assets/images/circle.png'
 import {Navigate, NavLink} from 'react-router-dom';
 import {PATH} from "../../routes/routes";
+import {useSelector} from "react-redux";
+import {RootState} from "../../store/store";
+import {UserInfo} from "../../api/info-api";
 
 type VacanciesPropsType = {}
 
 export const Vacancies: FC<VacanciesPropsType> = (props) => {
+
+    const userEmail = useSelector<RootState, UserInfo | string>(state => state.user.userEmail)
+    const firstName = useSelector<RootState, UserInfo | string>(state => state.user.userFirstName)
+    const lastName = useSelector<RootState, UserInfo | string>(state => state.user.userLastName)
 
     const {} = props
 
@@ -31,7 +38,7 @@ export const Vacancies: FC<VacanciesPropsType> = (props) => {
 
                     <button className={s.header__buttons}>Testings</button>
                 </div>
-                <div className={s.header__userName}>User Name</div>
+                    <div className={s.header__userName}>{firstName} {lastName}</div>
             </div>
             <div className={s.general}>
                 <div className={s.statistic}>
