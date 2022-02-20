@@ -1,28 +1,45 @@
-import React, {FC} from 'react';
+import React, {FC, useEffect} from 'react';
 import s from './Vacancies.module.scss'
 import checkMark from '../../assets/images/check-mark.png'
 import cross from '../../assets/images/cross.png'
 import circle from '../../assets/images/circle.png'
 import {Navigate, NavLink} from 'react-router-dom';
 import {PATH} from "../../routes/routes";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../store/store";
-import {UserInfo} from "../../api/info-api";
+import {UserInfo, UserInfoError} from "../../api/info-api";
+import {setUserInfo} from "../../store/reducers/userInfo-reducer";
+import {setStatisticInfo} from "../../store/reducers/statistics-reducer";
+import {LeaderboardDataType} from "../../api/statistics-api";
 
 type VacanciesPropsType = {}
 
 export const Vacancies: FC<VacanciesPropsType> = (props) => {
 
-    const userEmail = useSelector<RootState, UserInfo | string>(state => state.user.userEmail)
-    const firstName = useSelector<RootState, UserInfo | string>(state => state.user.userFirstName)
-    const lastName = useSelector<RootState, UserInfo | string>(state => state.user.userLastName)
-
     const {} = props
 
+    // const userEmail = useSelector<RootState, UserInfo | string>(state => state.user.userEmail)
+    const authError = useSelector<RootState, UserInfoError | string>(state => state.user.userInfoError)
+    const firstName = useSelector<RootState, UserInfo | string>(state => state.user.userFirstName)
+    const lastName = useSelector<RootState, UserInfo | string>(state => state.user.userLastName)
+    const leaderboard = useSelector<RootState, LeaderboardDataType | LeaderboardDataType[]>(state => state.statistic.leaderboardData)
+    const dispatch = useDispatch()
 
-    if (!localStorage.getItem('token')) {
-        return <Navigate to={PATH.ACCESS}/>
-    }
+    useEffect(() => {
+        if (localStorage.getItem('token')) {
+            dispatch(setUserInfo())
+            dispatch(setStatisticInfo())
+        }
+    }, []);
+
+
+    // if (!localStorage.getItem('token')) {
+    //     return <Navigate to={PATH.ACCESS}/>
+    // }
+
+    console.log(
+        leaderboard
+    )
 
     return (
         <div className={s.vacanciesPage}>
@@ -38,7 +55,9 @@ export const Vacancies: FC<VacanciesPropsType> = (props) => {
 
                     <button className={s.header__buttons}>Testings</button>
                 </div>
-                    <div className={s.header__userName}>{firstName} {lastName}</div>
+                {/*{!localStorage.getItem('token') ? <div>{authError}</div> : */}
+                <div className={s.header__userName}>{firstName} {lastName}</div>
+                {/*// }*/}
             </div>
             <div className={s.general}>
                 <div className={s.statistic}>
@@ -46,26 +65,7 @@ export const Vacancies: FC<VacanciesPropsType> = (props) => {
                     <div className={s.progressStatistics}>
 
                         <div className={s.graphic}>
-                            <hr/>
-                            <hr/>
-                            <hr/>
-                            <hr/>
-                            <hr/>
-                            <hr/>
-                            <hr/>
-                            <hr/>
-                            <hr/>
-                            <hr/>
-                            <hr/>
-                            <hr/>
-                            <hr/>
-                            <hr/>
-                            <hr/>
-                            <hr/>
-                            <hr/>
-                            <hr/>
-                            <hr/>
-                            <hr/>
+
                         </div>
                         <div className={s.currentStage}>
                             <p className={s.smallTitle}>At the current stage:</p>
@@ -100,10 +100,13 @@ export const Vacancies: FC<VacanciesPropsType> = (props) => {
                     <p className={s.title}>Leaderboard</p>
                     <p className={s.smallTitle}>Three best-performing candidates are:</p>
                     <div className={s.Leaderboard}>
-                        <div className={s.LeaderboardBlock}>John Smith</div>
-                        <div className={s.LeaderboardBlock}>Mitchel Darras</div>
-                        <div className={s.LeaderboardBlock}>Sofia Linde</div>
-                        <div className={s.LeaderboardBlock}>Also:</div>
+
+
+
+                        {/*<div className={s.LeaderboardBlock}>John Smith</div>*/}
+                        {/*<div className={s.LeaderboardBlock}>Mitchel Darras</div>*/}
+                        {/*<div className={s.LeaderboardBlock}>Sofia Linde</div>*/}
+                        {/*<div className={s.LeaderboardBlock}>Also:</div>*/}
                     </div>
                 </div>
 

@@ -1,5 +1,5 @@
 import {Dispatch} from "redux"
-import {LeaderboardDataType} from "../../api/statistics-api";
+import {LeaderboardDataType, statisticsApi} from "../../api/statistics-api";
 
 enum STATISTIC_ACTIONS_TYPES {
     LEADERBOARD_DATA = 'STATISTIC/LEADERBOARD_DATA',
@@ -13,19 +13,25 @@ type StatisticActionType =
     | ReturnType<typeof statisticError>
 
 
-
 export type StatisticInitialState = {
-    leaderboardData: LeaderboardDataType[] | null
+    leaderboardData: LeaderboardDataType | LeaderboardDataType[]
+    statisticError: LeaderboardDataType | string
 }
 
 const InitialState: StatisticInitialState = {
-    leaderboardData: null
+    leaderboardData: [],
+    statisticError: ''
 }
 
 
 export const statisticReducer = (state = InitialState, action: StatisticActionType): StatisticInitialState => {
     switch (action.type) {
 
+        case STATISTIC_ACTIONS_TYPES.LEADERBOARD_DATA:
+            return {...state, leaderboardData: action.payload.leaderboardData}
+
+        case STATISTIC_ACTIONS_TYPES.STATISTIC_ERROR:
+            return {...state, statisticError: action.payload.error}
 
         default:
             return state
@@ -33,21 +39,30 @@ export const statisticReducer = (state = InitialState, action: StatisticActionTy
 }
 
 
-export const leaderboardData = (leaderboardData: LeaderboardDataType[]) => ({
+export const leaderboardData = (leaderboardData: LeaderboardDataType | LeaderboardDataType[]) => ({
     type: STATISTIC_ACTIONS_TYPES.LEADERBOARD_DATA,
     payload: {leaderboardData}
 } as const)
 
-export const statisticError = (error: LeaderboardDataType | null) => ({
+export const statisticError = (error: LeaderboardDataType | string) => ({
     type: STATISTIC_ACTIONS_TYPES.STATISTIC_ERROR,
     payload: {error}
 } as const)
 
 
-
 export const setStatisticInfo = () => {
     return (dispatch: Dispatch) => {
+        statisticsApi.leaderboard()
+            .then((res) => {
+                dispatch(leaderboardData(res.data))
+                console.log(res.data)
+            })
+            .catch((e) => {
 
+            })
+            .finally(() => {
+
+            })
 
     }
 }

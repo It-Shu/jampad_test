@@ -1,5 +1,5 @@
 import {Dispatch} from "redux"
-import {infoApi} from "../../api/info-api";
+import {infoApi, UserInfoError} from "../../api/info-api";
 
 enum INFO_ACTIONS_TYPES {
     USER_EMAIL = 'INFO/USER_EMAIL',
@@ -20,7 +20,7 @@ export type InfoInitialState = {
     userEmail: string
     userFirstName: string
     userLastName: string
-    userInfoError: string
+    userInfoError: UserInfoError | string
 }
 
 const InitialState: InfoInitialState = {
@@ -67,7 +67,7 @@ export const userLastName = (last_name: string) => ({
     payload: {last_name}
 } as const)
 
-export const infoError = (infoError: string) => ({
+export const infoError = (infoError: UserInfoError | string) => ({
     type: INFO_ACTIONS_TYPES.INFO_ERROR,
     payload: {infoError}
 } as const)
@@ -80,7 +80,6 @@ export const setUserInfo = () => {
                 dispatch(userEmail(res.data.email))
                 dispatch(userFirstName(res.data.first_name))
                 dispatch(userLastName(res.data.last_name))
-                console.log(res.data.email)
             })
             .catch(e => {
                 dispatch(infoError(e.response.data.detail))

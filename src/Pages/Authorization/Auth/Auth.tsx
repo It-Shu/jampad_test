@@ -1,4 +1,4 @@
-import React, {FormEvent, useEffect, useState} from 'react';
+import React, {FormEvent, useState} from 'react';
 import {Input} from '../../../UI/Input/Input';
 import {Button} from "../../../UI/Button/Button";
 import s from './Auth.module.scss'
@@ -7,35 +7,34 @@ import {Navigate} from 'react-router-dom';
 import {PATH} from "../../../routes/routes";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../../store/store";
-import { setLogin} from "../../../store/reducers/auth-reducer";
-import {infoError, setUserInfo} from "../../../store/reducers/userInfo-reducer";
-import {UserInfo} from "../../../api/info-api";
+import {setLogin} from "../../../store/reducers/auth-reducer";
+import {UserInfoError} from "../../../api/info-api";
+import {setUserInfo} from "../../../store/reducers/userInfo-reducer";
+import {setStatisticInfo} from "../../../store/reducers/statistics-reducer";
+
 
 export const Auth = () => {
-    const userEmail = useSelector<RootState, string>(state => state.user.userEmail)
-    // const token = useSelector<RootState, string>(state => state.auth.getToken)
+
+
     const isLoggedIn = useSelector<RootState, boolean>(state => state.auth.status)
     const error = useSelector<RootState, string>(state => state.auth.isError)
     const emailError = useSelector<RootState, string>(state => state.auth.emailError)
     const passwordError = useSelector<RootState, string>(state => state.auth.passwordError)
-    const authError = useSelector<RootState, string>(state => state.user.userInfoError)
+    const authError = useSelector<RootState, UserInfoError | string>(state => state.user.userInfoError)
 
     const dispatch = useDispatch()
 
     const [email, setEmail] = useState<string>('')
     const [password, setPassword] = useState<string>('')
 
-
     const onSubmit = (e: FormEvent) => {
         e.preventDefault()
-        dispatch(setLogin(email,password))
-        dispatch(setUserInfo())
+        dispatch(setLogin(email, password))
+
     }
 
 
-
-
-    if (isLoggedIn && localStorage.getItem('token') && userEmail) {
+    if (isLoggedIn && localStorage.getItem('token')) {
         return <Navigate to={PATH.VACANCIES}/>
     }
 
@@ -55,7 +54,6 @@ export const Auth = () => {
                                value={email}
                                inputValue={email}
                                onChange={e => setEmail(e.currentTarget.value)}
-                            // onChange={e => setValues({...values, email: e.currentTarget.value})}
                         />
                     </label>
                     {emailError && !email ? <div className={s.error}>{emailError}</div> : null}
@@ -67,12 +65,11 @@ export const Auth = () => {
                                password
                                onChange={e => setPassword(e.currentTarget.value)}/>
                     </label>
-                    {error ?  <div className={s.error}>{error}</div> : ''}
+                    {error ? <div className={s.error}>{error}</div> : ''}
                     {passwordError ? <div className={s.error}>{passwordError}</div> : ''}
-                    {authError ? <div className={s.error}>{authError}</div> : ''}
+                    {/*{authError ? <div className={s.error}>{authError}</div> : ''}*/}
                     <Button
                         type={'submit'}
-                        // disabled={buttonDisabled()}
                         buttonName={'Log in'}
                         className={s.LogInButton}/>
                 </form>

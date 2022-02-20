@@ -13,6 +13,12 @@ export type ResponseLoginType = {
     error: string
 }
 
+// export type ResponseErrorsType = [
+//     { error: string },
+//     { email: string },
+//     { password: string }
+// ]
+
 
 export const authAPI = {
     login: (email: string, password: string) => instance

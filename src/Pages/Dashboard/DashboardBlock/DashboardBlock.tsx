@@ -1,8 +1,9 @@
-import React, {FC} from 'react';
+import React, {FC, useEffect} from 'react';
 import s from './DashboardBlock.module.scss'
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../../store/store";
 import {UserInfo} from "../../../api/info-api";
+import {setUserInfo} from "../../../store/reducers/userInfo-reducer";
 
 type DashboardBlockPropsType = {
     cards: {id: string, title: string}[]
@@ -10,13 +11,21 @@ type DashboardBlockPropsType = {
 
 export const DashboardBlock: FC<DashboardBlockPropsType> = (props) => {
 
-    const userEmail = useSelector<RootState, UserInfo | string>(state => state.user.userEmail)
-    const firstName = useSelector<RootState, UserInfo | string>(state => state.user.userFirstName)
-    const lastName = useSelector<RootState, UserInfo | string>(state => state.user.userLastName)
-
     const {
         cards,
     } = props
+
+
+    const firstName = useSelector<RootState, UserInfo | string>(state => state.user.userFirstName)
+    const lastName = useSelector<RootState, UserInfo | string>(state => state.user.userLastName)
+    const dispatch = useDispatch()
+
+
+    useEffect(() => {
+        if (localStorage.getItem('token')) {
+            dispatch(setUserInfo())
+        }
+    }, []);
 
     return (
         <div className={s.dashboardBlock}>

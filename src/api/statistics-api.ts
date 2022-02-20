@@ -3,14 +3,11 @@ import {AxiosResponse} from "axios";
 import {instance} from "./instance";
 
 
-export type LeaderboardDataType = [
-    {
+export type LeaderboardDataType = {
         first_name: string,
         last_name: string,
         success_rate: number,
-        error?: StatisticsError,
     }
-]
 
 
 type StatisticsError = {
@@ -20,5 +17,5 @@ type StatisticsError = {
 
 export const statisticsApi = {
     leaderboard: () => instance
-        .get<LeaderboardDataType[], AxiosResponse<LeaderboardDataType[]>>('statistics/leaderboard')
+        .get<LeaderboardDataType, AxiosResponse<LeaderboardDataType>>('statistics/leaderboard')
 }

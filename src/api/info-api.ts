@@ -10,7 +10,7 @@ export type UserInfo = {
 }
 
 
-type UserInfoError = {
+export type UserInfoError = {
     detail: string
 }
 
