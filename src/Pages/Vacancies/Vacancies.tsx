@@ -3,7 +3,7 @@ import s from './Vacancies.module.scss'
 import checkMark from '../../assets/images/check-mark.png'
 import cross from '../../assets/images/cross.png'
 import circle from '../../assets/images/circle.png'
-import {NavLink} from 'react-router-dom';
+import {Navigate, NavLink} from 'react-router-dom';
 import {PATH} from "../../routes/routes";
 
 type VacanciesPropsType = {}
@@ -11,6 +11,11 @@ type VacanciesPropsType = {}
 export const Vacancies: FC<VacanciesPropsType> = (props) => {
 
     const {} = props
+
+
+    if (!localStorage.getItem('token')) {
+        return <Navigate to={PATH.ACCESS}/>
+    }
 
     return (
         <div className={s.vacanciesPage}>

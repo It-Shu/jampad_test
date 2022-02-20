@@ -1,0 +1,39 @@
+.modal {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal__content {
+  padding: 20px;
+  border-radius: 15px;
+  background-color: white;
+  width: 400px;
+  height: 200px;
+}
+
+
+.accessPage__button {
+  border: none;
+  background-color: #FED614;
+  border-radius: 5px;
+  margin-top: 30px;
+  width: 100px;
+  height: 36px;
+}
+
+.accessPage__button:hover {
+  background-color: #d3b318;
+  transition: 0.2s;
+}
+
+.accessPage__button:active {
+  background-color: #FED614;
+  transition: 0.1s;
+}

@@ -1,6 +1,5 @@
 import {Dispatch} from "redux"
-import {authAPI, RequestErrorsType, RequestLoginType, ResponseLoginType} from "../../api/auth-api";
-
+import {authAPI, ResponseErrorsType} from "../../api/auth-api";
 
 
 enum AUTH_ACTIONS_TYPES {
@@ -8,6 +7,8 @@ enum AUTH_ACTIONS_TYPES {
     SET_LOGIN_ERROR = "AUTH/SET_LOGIN_ERROR",
     IS_LOADING = 'AUTH/IS_LOADING',
     IS_TOKEN = 'AUTH/IS_TOKEN',
+    EMAIL_ERROR = 'AUTH/EMAIL_ERROR',
+    PASSWORD_ERROR = 'AUTH/PASSWORD_ERROR',
 }
 
 type AuthActionType =
@@ -15,17 +16,23 @@ type AuthActionType =
     | ReturnType<typeof loginError>
     | ReturnType<typeof isLoading>
     | ReturnType<typeof isLoggedIn>
+    | ReturnType<typeof emailError>
+    | ReturnType<typeof passwordError>
 
 export type AuthInitialState = {
     getToken: string
-    isError: RequestErrorsType | null
+    isError: string
+    emailError: string
+    passwordError: string
     status: boolean
     loading: boolean
 }
 
 const InitialState: AuthInitialState = {
     getToken: '',
-    isError: null,
+    isError: '',
+    emailError: '',
+    passwordError: '',
     status: false,
     loading: false
 }
@@ -44,7 +51,13 @@ export const authReducer = (state = InitialState, action: AuthActionType): AuthI
             return {...state, getToken: action.payload.token}
 
         case AUTH_ACTIONS_TYPES.SET_LOGIN_ERROR:
-            return {...state, isError: action.payload.errors}
+            return {...state, isError: action.payload.error}
+
+        case AUTH_ACTIONS_TYPES.EMAIL_ERROR:
+            return {...state, emailError: action.payload.emailError}
+
+        case AUTH_ACTIONS_TYPES.PASSWORD_ERROR:
+            return {...state, passwordError: action.payload.passwordError}
 
         default:
             return state
@@ -68,10 +81,24 @@ export const isToken = (token: string) => ({
 
 // Errors
 
-export const loginError = (errors: RequestErrorsType | null) => ({ // Types for error : email and password !!!!!!
+export const loginError = (error: string) => ({ // Types for error : email and password !!!!!!
     type: AUTH_ACTIONS_TYPES.SET_LOGIN_ERROR,
-    payload: {errors}
+    payload: {error}
 } as const)
+
+export const emailError = (emailError: string) => ({ // Types for error : email and password !!!!!!
+    type: AUTH_ACTIONS_TYPES.EMAIL_ERROR,
+    payload: {emailError}
+} as const)
+
+export const passwordError = (passwordError: string) => ({ // Types for error : email and password !!!!!!
+    type: AUTH_ACTIONS_TYPES.PASSWORD_ERROR,
+    payload: {passwordError}
+} as const)
+
+
+
+
 
 
 // Loading before auth
@@ -84,38 +111,27 @@ export const isLoading = (loading: boolean) => ({
 
 //THUNKS
 
-export const setLogin = (email: string, password: string)  => {
-return (dispatch: Dispatch) => {
-    // dispatch(isLoading(true)) // loading before auth
-    authAPI.login(email, password) // request
-        .then((res) => {
-            localStorage.setItem('token', res.data.token)
-            console.log(res.data.token)
-            dispatch(isLoggedIn(true)) // login success
-        })
-    // .catch((e) => {
-    //     dispatch(loginError(e.errors))
-    //     console.log(e.errors)
-    // })
-    // .finally(() => {
-    //     dispatch(isLoading(false))
-    // })
-}
+export const setLogin = (email: string, password: string) => {
+    return (dispatch: Dispatch) => {
+        // dispatch(isLoading(true)) // loading before auth
+        authAPI.login(email, password) // request
+            .then((res) => {
+                localStorage.setItem('token', res.data.token)
+                console.log(res.data.token)
+                dispatch(isLoggedIn(true)) // login success
+            })
+            .catch((e) => {
+                dispatch(emailError(e.response.data.email))
+                dispatch(passwordError(e.response.data.password))
+                dispatch(loginError(e.response.data.error))
+                console.log(e.response.data.email)
+                console.log(e.response.data.password)
+                console.log(e.response.data.error)
+
+            })
+            .finally(() => {
+                // dispatch(isLoading(false))
+            })
+    }
 
 }
-
-// export const setLogin = (email: string, password: string) => async (dispatch: Dispatch) => {
-//     try {
-//         dispatch(isLoading(true)) // loading before auth
-//         const response = await authAPI.Login(email, password) // request
-//         // dispatch(isToken(response.data.token))
-//         localStorage.setItem('token', response.data.token)
-//         console.log(response.data.token)
-//         dispatch(isLoggedIn(true))
-//     } catch (e: any) {
-//         console.log(e.response?.data?.errors)
-//         loginError(e.errors)
-//     } finally {
-//         dispatch(isLoading(false))
-//     }
-// }

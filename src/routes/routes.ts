@@ -2,7 +2,7 @@
 
 export enum PATH {
     AUTH = '/',
-    EMPTY = '',
+    ACCESS = '/access',
     ERROR = '/404',
     VACANCIES = '/vacancies',
     DASHBOARD = '/dashboard',

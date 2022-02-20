@@ -7,23 +7,19 @@ import {Navigate} from 'react-router-dom';
 import {PATH} from "../../../routes/routes";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../../store/store";
-import {setLogin} from "../../../store/reducers/auth-reducer";
-// import {Progress} from "../../../UI/Progress/Progress";
-// import {setLogin} from "../../../store/reducers/auth-reducer";
-// import {login} from "../../../store/reducers/auth-reducer";
+import { setLogin} from "../../../store/reducers/auth-reducer";
 
 export const Auth = () => {
 
     const token = useSelector<RootState, string>(state => state.auth.getToken)
     const isLoggedIn = useSelector<RootState, boolean>(state => state.auth.status)
+    const error = useSelector<RootState, string>(state => state.auth.isError)
+    const emailError = useSelector<RootState, string>(state => state.auth.emailError)
+    const passwordError = useSelector<RootState, string>(state => state.auth.passwordError)
     const dispatch = useDispatch()
 
     const [email, setEmail] = useState<string>('')
     const [password, setPassword] = useState<string>('')
-
-    // useEffect(() => {
-    //
-    // }, [])
 
 
     const onSubmit = (e: FormEvent) => {
@@ -33,11 +29,8 @@ export const Auth = () => {
 
 
 
-    const buttonDisabled = () => {
-        return !email || !password
-    }
 
-    if (isLoggedIn) {
+    if (isLoggedIn && localStorage.getItem('token')) {
         return <Navigate to={PATH.VACANCIES}/>
     }
 
@@ -60,7 +53,7 @@ export const Auth = () => {
                             // onChange={e => setValues({...values, email: e.currentTarget.value})}
                         />
                     </label>
-
+                    {emailError && !email ? <div className={s.error}>{emailError}</div> : null}
                     <label htmlFor='login-password'>
                         <p className={s.inputTitle}>Your password</p>
                         <Input id={'login-password'}
@@ -69,14 +62,13 @@ export const Auth = () => {
                                password
                                onChange={e => setPassword(e.currentTarget.value)}/>
                     </label>
-                    {/*<NavLink to={PATH.VACANCIES}>*/}
+                    {error ?  <div className={s.error}>{error}</div> : ''}
+                    {passwordError ? <div className={s.error}>{passwordError}</div> : ''}
                     <Button
-                        // onClick={()=>{setLogin(email, password)}}
                         type={'submit'}
-                        disabled={buttonDisabled()}
+                        // disabled={buttonDisabled()}
                         buttonName={'Log in'}
                         className={s.LogInButton}/>
-                    {/*</NavLink>*/}
                 </form>
             </div>
         </div>

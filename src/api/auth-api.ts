@@ -21,19 +21,22 @@ export type RequestLoginType = {
 
 export type ResponseLoginType = {
     token: string
-    error: RequestErrorsType
+    error: string
 }
 
-export type RequestErrorsType = {
-    email: string
-    password: string
-}
+export type ResponseErrorsType = [
+    { error: string },
+    { email: string },
+    { password: string }
+]
 
 
 export const authAPI = {
     login: (email: string, password: string) => instance
         .post<RequestLoginType, AxiosResponse<ResponseLoginType>>
         ('hrs/login', {email, password})
+
+
 }
 
 // https://api.jampad.ml/api/statistics/leaderboard
