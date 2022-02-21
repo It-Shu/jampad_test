@@ -20,7 +20,7 @@ export const Vacancies: FC<VacanciesPropsType> = (props) => {
     const {} = props
 
     const funnel = useSelector<RootState, FunnelType>(state => state.funnel)
-    const userName = useSelector<RootState, UserInfo>(state => state.user)
+    const userInfo = useSelector<RootState, UserInfo>(state => state.user)
     const leaders = useSelector<RootState, Array<LeaderboardInitialState>>(state => state.leader)
 
     const dispatch = useDispatch()
@@ -51,7 +51,8 @@ export const Vacancies: FC<VacanciesPropsType> = (props) => {
 
                     <button className={s.header__buttons}>Testings</button>
                 </div>
-                <div className={s.header__userName}>{userName.first_name} {userName.last_name}</div>
+                {userInfo.detail ? <div className={s.error}>{userInfo.detail}</div> : ''}
+                <div className={s.header__userName}>{userInfo.first_name} {userInfo.last_name}</div>
             </div>
             <div className={s.general}>
                 <div className={s.statistic}>
@@ -67,6 +68,7 @@ export const Vacancies: FC<VacanciesPropsType> = (props) => {
                                 <div className={s.iconBlock}><img className={s.icon} src={checkMark}
                                                                   alt="checkMarkIcon"/></div>
                                 <div className={s.currentStageScore}>
+                                    {userInfo.detail ? <div className={s.error}>{userInfo.detail}</div> : ''}
                                     <div className={s.title}>{funnel!.passed}</div>
                                     <p className={s.smallTitle}>Passed</p>
                                 </div>
@@ -75,6 +77,7 @@ export const Vacancies: FC<VacanciesPropsType> = (props) => {
                             <div className={s.currentStageBlock}>
                                 <div className={s.iconBlock}><img className={s.icon} src={cross} alt="crossIcon"/></div>
                                 <div className={s.currentStageScore}>
+                                    {userInfo.detail ? <div className={s.error}>{userInfo.detail}</div> : ''}
                                     <div className={s.title}>{funnel!.unsuccessful}</div>
                                     <p className={s.smallTitle}>Unsuccessful</p>
                                 </div>
@@ -84,6 +87,7 @@ export const Vacancies: FC<VacanciesPropsType> = (props) => {
                                 <div className={s.iconBlock}><img className={s.icon} src={circle} alt="circleIcon"/>
                                 </div>
                                 <div className={s.currentStageScore}>
+                                    {userInfo.detail ? <div className={s.error}>{userInfo.detail}</div> : ''}
                                     <div className={s.title}>{funnel!.overall}</div>
                                     <p className={s.smallTitle}>Overall</p>
                                 </div>
@@ -95,7 +99,7 @@ export const Vacancies: FC<VacanciesPropsType> = (props) => {
                     <p className={s.smallTitle}>Three best-performing candidates are:</p>
                     <div className={s.leaderboard}>
 
-
+                        {userInfo.detail ? <div className={s.error}>{userInfo.detail}</div> : ''}
                         <div className={s.leaderboard__firsEl}>
                             {leaders.slice(0, 3).map((first) => {
                                 return <div key={first.id} className={s.leaderboardBlock}>
@@ -116,6 +120,7 @@ export const Vacancies: FC<VacanciesPropsType> = (props) => {
                         <div className={s.leaderboard__otherEl}>
                             <p className={s.smallTitle}> Also:</p>
                             <div className={s.leaderboardOtherScroll}>
+
                                 {leaders.slice(3).map((other) => {
                                     return <div key={other.id} className={s.leaderboardScrollBlock}>
                                         <div className={s.leaderboardScrollBlock__info}>

@@ -1,5 +1,4 @@
-import {AxiosResponse} from "axios"
-import {instance} from "./instance";
+import axios, {AxiosResponse} from "axios"
 
 
 // TYPES
@@ -26,9 +25,9 @@ export type ResponseErrorsType = {
 
 
 export const authAPI = {
-    login: (email: string, password: string) => instance
+    login: (email: string, password: string) => axios
         .post<RequestLoginType, AxiosResponse<ResponseLoginType>>
-        ('hrs/login', {email, password})
+        ('https://api.jampad.ml/api/hrs/login', {email, password})
 
 
 }
