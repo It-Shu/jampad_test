@@ -1,6 +1,7 @@
 import {Dispatch} from "redux"
 import {LeaderboardDataType, statisticsApi} from "../../api/statistics-api";
 
+
 enum STATISTIC_ACTIONS_TYPES {
     LEADERBOARD_DATA = 'STATISTIC/LEADERBOARD_DATA',
     STATISTIC_ERROR = 'STATISTIC/STATISTIC_ERROR',
@@ -13,25 +14,29 @@ type StatisticActionType =
     | ReturnType<typeof statisticError>
 
 
-export type StatisticInitialState = {
-    leaderboardData: LeaderboardDataType | LeaderboardDataType[]
-    statisticError: LeaderboardDataType | string
-}
+// export type StatisticInitialState = {
+//     leaderboardData: LeaderboardDataType | []
+//     statisticError: LeaderboardDataType | string
+// }
 
-const InitialState: StatisticInitialState = {
-    leaderboardData: [],
-    statisticError: ''
-}
+// const InitialState: StatisticInitialState = {
+//     leaderboardData: [],
+//     statisticError: ''
+// }
+
+export type StatisticInitialState = LeaderboardDataType
+
+const InitialState: Array<StatisticInitialState> = []
 
 
-export const statisticReducer = (state = InitialState, action: StatisticActionType): StatisticInitialState => {
+export const statisticReducer = (state = InitialState, action: StatisticActionType): Array<StatisticInitialState> => {
     switch (action.type) {
 
         case STATISTIC_ACTIONS_TYPES.LEADERBOARD_DATA:
-            return {...state, leaderboardData: action.payload.leaderboardData}
-
-        case STATISTIC_ACTIONS_TYPES.STATISTIC_ERROR:
-            return {...state, statisticError: action.payload.error}
+            return action.payload.leaderboardData.map(leader => ({...leader}))
+        //
+        // case STATISTIC_ACTIONS_TYPES.STATISTIC_ERROR:
+        //     return {...state, statisticError: action.payload.error}
 
         default:
             return state
@@ -39,7 +44,7 @@ export const statisticReducer = (state = InitialState, action: StatisticActionTy
 }
 
 
-export const leaderboardData = (leaderboardData: LeaderboardDataType | LeaderboardDataType[]) => ({
+export const leaderboardData = (leaderboardData: Array<any>) => ({
     type: STATISTIC_ACTIONS_TYPES.LEADERBOARD_DATA,
     payload: {leaderboardData}
 } as const)
@@ -58,7 +63,7 @@ export const setStatisticInfo = () => {
                 console.log(res.data)
             })
             .catch((e) => {
-
+                console.log(e)
             })
             .finally(() => {
 

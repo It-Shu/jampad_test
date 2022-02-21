@@ -9,7 +9,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../store/store";
 import {UserInfo, UserInfoError} from "../../api/info-api";
 import {setUserInfo} from "../../store/reducers/userInfo-reducer";
-import {setStatisticInfo} from "../../store/reducers/statistics-reducer";
+import {setStatisticInfo, StatisticInitialState} from "../../store/reducers/statistics-reducer";
 import {LeaderboardDataType} from "../../api/statistics-api";
 
 type VacanciesPropsType = {}
@@ -22,7 +22,7 @@ export const Vacancies: FC<VacanciesPropsType> = (props) => {
     const authError = useSelector<RootState, UserInfoError | string>(state => state.user.userInfoError)
     const firstName = useSelector<RootState, UserInfo | string>(state => state.user.userFirstName)
     const lastName = useSelector<RootState, UserInfo | string>(state => state.user.userLastName)
-    const leaderboard = useSelector<RootState, LeaderboardDataType | LeaderboardDataType[]>(state => state.statistic.leaderboardData)
+    const leaders = useSelector<RootState, Array<StatisticInitialState>>(state => state.statistic)
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -33,13 +33,6 @@ export const Vacancies: FC<VacanciesPropsType> = (props) => {
     }, []);
 
 
-    // if (!localStorage.getItem('token')) {
-    //     return <Navigate to={PATH.ACCESS}/>
-    // }
-
-    console.log(
-        leaderboard
-    )
 
     return (
         <div className={s.vacanciesPage}>
@@ -102,7 +95,13 @@ export const Vacancies: FC<VacanciesPropsType> = (props) => {
                     <div className={s.Leaderboard}>
 
 
-
+                        {leaders.map(l=>{
+                            return <div className={s.LeaderboardBlock}>
+                               <div>{l.first_name}</div>
+                                <div>{l.last_name}</div>
+                                <div>{l.success_rate}</div>
+                            </div>
+                        })}
                         {/*<div className={s.LeaderboardBlock}>John Smith</div>*/}
                         {/*<div className={s.LeaderboardBlock}>Mitchel Darras</div>*/}
                         {/*<div className={s.LeaderboardBlock}>Sofia Linde</div>*/}
