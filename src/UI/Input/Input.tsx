@@ -8,8 +8,6 @@ type DefaultInputPropsType = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElem
 
 type InputTextProps = DefaultInputPropsType & {
     onEnter?: () => void
-    error?: string
-    spanClassName?: string
     password?: boolean
     email?: boolean
     placeholder?: string
@@ -20,11 +18,8 @@ export const Input: FC<InputTextProps> = props => {
     const {
         type,
         onChange,
-        onKeyPress,
         onEnter,
-        error,
         className,
-        spanClassName,
         password,
         email,
         inputValue,

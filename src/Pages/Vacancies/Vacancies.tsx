@@ -10,7 +10,7 @@ import {RootState} from "../../store/store";
 import {UserInfo} from "../../api/info-api";
 import {setUserInfo} from "../../store/reducers/userInfo-reducer";
 import {setStatisticInfo, LeaderboardInitialState} from "../../store/reducers/leaderboard-reducer";
-import {FunnelInitialState, setFunnelData} from "../../store/reducers/funnel-reducer";
+import {setFunnelData} from "../../store/reducers/funnel-reducer";
 import {FunnelType} from "../../api/statistics-api";
 
 type VacanciesPropsType = {}
@@ -33,6 +33,9 @@ export const Vacancies: FC<VacanciesPropsType> = (props) => {
         }
     }, []);
 
+    if (!localStorage.getItem('token')) {
+        return <Navigate to={PATH.AUTH}/>
+    }
 
     return (
         <div className={s.vacanciesPage}>

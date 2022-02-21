@@ -8,15 +8,14 @@ import {PATH} from "../../../routes/routes";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../../store/store";
 import {setLogin} from "../../../store/reducers/auth-reducer";
+import {ResponseErrorsType} from "../../../api/auth-api";
 
 
 export const Auth = () => {
 
 
     const isLoggedIn = useSelector<RootState, boolean>(state => state.auth.status)
-    const error = useSelector<RootState, string>(state => state.auth.isError)
-    const emailError = useSelector<RootState, string>(state => state.auth.emailError)
-    const passwordError = useSelector<RootState, string>(state => state.auth.passwordError)
+    const error = useSelector<RootState, ResponseErrorsType>(state => state.auth)
 
     const dispatch = useDispatch()
 
@@ -26,7 +25,6 @@ export const Auth = () => {
     const onSubmit = (e: FormEvent) => {
         e.preventDefault()
         dispatch(setLogin(email, password))
-
     }
 
 
@@ -39,7 +37,6 @@ export const Auth = () => {
             <Welcome/>
 
             <div className={s.authBlock}>
-                {/*<Progress/>*/}
                 <form onSubmit={onSubmit}>
                     <p className={s.authTitle}>Authorization</p>
                     <label htmlFor='login-email'>
@@ -52,7 +49,7 @@ export const Auth = () => {
                                onChange={e => setEmail(e.currentTarget.value)}
                         />
                     </label>
-                    {emailError && !email ? <div className={s.error}>{emailError}</div> : null}
+                    {error.email ? <div className={s.error}>{error.email}</div> : null}
                     <label htmlFor='login-password'>
                         <p className={s.inputTitle}>Your password</p>
                         <Input id={'login-password'}
@@ -61,9 +58,9 @@ export const Auth = () => {
                                password
                                onChange={e => setPassword(e.currentTarget.value)}/>
                     </label>
-                    {error ? <div className={s.error}>{error}</div> : ''}
-                    {passwordError ? <div className={s.error}>{passwordError}</div> : ''}
-                    {/*{authError ? <div className={s.error}>{authError}</div> : ''}*/}
+                    {error.error ? <div className={s.error}>{error.error}</div> : null}
+                    {error.password ? <div className={s.error}>{error.password}</div> : null}
+                    {error.detail ? <div className={s.error}>{error.detail}</div> : null}
                     <Button
                         type={'submit'}
                         buttonName={'Log in'}

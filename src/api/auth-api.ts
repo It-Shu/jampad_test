@@ -10,14 +10,19 @@ export type RequestLoginType = {
 
 export type ResponseLoginType = {
     token: string
-    error: string
+    error?: ResponseErrorsType
 }
 
-// export type ResponseErrorsType = [
-//     { error: string },
-//     { email: string },
-//     { password: string }
-// ]
+export type ResponseErrorsType = {
+
+    detail: string
+    error: string
+    email: string
+    password: string
+
+}
+
+
 
 
 export const authAPI = {
@@ -28,5 +33,3 @@ export const authAPI = {
 
 }
 
-// https://api.jampad.ml/api/statistics/leaderboard
-// https://api.jampad.ml/api/hrs/login
