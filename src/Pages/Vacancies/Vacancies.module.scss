@@ -31,25 +31,25 @@
     }
 
 
-      .header__button__pathActive{
-        border: none;
-        background-color: #ffffff;
-        border-radius: 5px;
-        padding: 7px 30px;
-        margin-left: 5px;
-        box-shadow: 0.5px 1px 3px 1px #ababab;
-      }
+    .header__button__pathActive {
+      border: none;
+      background-color: #ffffff;
+      border-radius: 5px;
+      padding: 7px 30px;
+      margin-left: 5px;
+      box-shadow: 0.5px 1px 3px 1px #ababab;
+    }
 
-      .header__button__pathActive:hover {
-        box-shadow: 0.5px 2px 3px 2px #ababab;
-        transition: 0.2s;
-      }
+    .header__button__pathActive:hover {
+      box-shadow: 0.5px 2px 3px 2px #ababab;
+      transition: 0.2s;
+    }
 
-      .header__button__pathActive:active {
-        background-color: #ffffff;
-        box-shadow: 0 0;
-        transition: 0.1s;
-      }
+    .header__button__pathActive:active {
+      background-color: #ffffff;
+      box-shadow: 0 0;
+      transition: 0.1s;
+    }
   }
 
   .general {
@@ -245,12 +245,13 @@
           .currentStageBlock {
             display: flex;
             flex-direction: row;
-            justify-content: space-around;
+            justify-content: space-between;
             border-radius: 10px;
             box-shadow: 0.5px 1px 3px 1px #ababab;
             margin-top: 15px;
             width: 200px;
             height: 70px;
+            padding: 10px;
 
             .currentStageScore {
               display: flex;
@@ -261,23 +262,83 @@
         }
       }
 
-      .Leaderboard {
+      .leaderboard {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
+        width: 100%;
+        height: 100%;
 
-        .LeaderboardBlock {
+        .leaderboard__firsEl {
           display: flex;
           flex-direction: row;
-          justify-content: space-around;
-          border-radius: 10px;
-          box-shadow: 0.5px 1px 3px 1px #ababab;
-          margin-top: 15px;
-          width: 200px;
-          height: 70px;
+
+          .leaderboardBlock__title {
+            margin: 10px;
+            font-size: small;
+            opacity: 0.5;
+          }
+
+          .leaderboardBlock {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border-radius: 10px;
+            box-shadow: 0.5px 1px 3px 1px #ababab;
+            margin: 15px;
+            padding: 15px;
+
+            .leaderboardBlock__rate {
+              margin-left: 10%;
+              align-items: center;
+              font-size: xx-large;
+              font-weight: bold;
+              margin-bottom: -15px;
+            }
+
+            .leaderboardBlock__name {
+              font-size: large;
+              font-weight: bold;
+            }
+
+            .leaderboardBlock__profile {
+              display: flex;
+              flex-direction: row;
+            }
+          }
+        }
+
+        .leaderboard__otherEl {
+          display: flex;
+          flex-direction: column;
+          width: 35%;
+
+          .leaderboardOtherScroll {
+            overflow: auto;
+            width: 100%;
+            height: 150px;
+
+
+            .leaderboardScrollBlock {
+              display: flex;
+              flex-direction: column;
+
+              .leaderboardScrollBlock__info {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                padding: 10px;
+
+                .leaderboardScrollBlock__title {
+                  margin: 0;
+                  font-size: small;
+                  opacity: 0.5;
+                }
+              }
+            }
+          }
         }
       }
-
     }
   }
 }

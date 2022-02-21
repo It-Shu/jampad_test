@@ -7,10 +7,11 @@ import {Navigate, NavLink} from 'react-router-dom';
 import {PATH} from "../../routes/routes";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../store/store";
-import {UserInfo, UserInfoError} from "../../api/info-api";
+import {UserInfo} from "../../api/info-api";
 import {setUserInfo} from "../../store/reducers/userInfo-reducer";
-import {setStatisticInfo, StatisticInitialState} from "../../store/reducers/statistics-reducer";
-import {LeaderboardDataType} from "../../api/statistics-api";
+import {setStatisticInfo, LeaderboardInitialState} from "../../store/reducers/leaderboard-reducer";
+import {FunnelInitialState, setFunnelData} from "../../store/reducers/funnel-reducer";
+import {FunnelType} from "../../api/statistics-api";
 
 type VacanciesPropsType = {}
 
@@ -18,20 +19,19 @@ export const Vacancies: FC<VacanciesPropsType> = (props) => {
 
     const {} = props
 
-    // const userEmail = useSelector<RootState, UserInfo | string>(state => state.user.userEmail)
-    const authError = useSelector<RootState, UserInfoError | string>(state => state.user.userInfoError)
-    const firstName = useSelector<RootState, UserInfo | string>(state => state.user.userFirstName)
-    const lastName = useSelector<RootState, UserInfo | string>(state => state.user.userLastName)
-    const leaders = useSelector<RootState, Array<StatisticInitialState>>(state => state.statistic)
+    const funnel = useSelector<RootState, FunnelType>(state => state.funnel)
+    const userName = useSelector<RootState, UserInfo>(state => state.user)
+    const leaders = useSelector<RootState, Array<LeaderboardInitialState>>(state => state.leader)
+
     const dispatch = useDispatch()
 
     useEffect(() => {
         if (localStorage.getItem('token')) {
             dispatch(setUserInfo())
             dispatch(setStatisticInfo())
+            dispatch(setFunnelData())
         }
     }, []);
-
 
 
     return (
@@ -48,9 +48,7 @@ export const Vacancies: FC<VacanciesPropsType> = (props) => {
 
                     <button className={s.header__buttons}>Testings</button>
                 </div>
-                {/*{!localStorage.getItem('token') ? <div>{authError}</div> : */}
-                <div className={s.header__userName}>{firstName} {lastName}</div>
-                {/*// }*/}
+                <div className={s.header__userName}>{userName.first_name} {userName.last_name}</div>
             </div>
             <div className={s.general}>
                 <div className={s.statistic}>
@@ -66,7 +64,7 @@ export const Vacancies: FC<VacanciesPropsType> = (props) => {
                                 <div className={s.iconBlock}><img className={s.icon} src={checkMark}
                                                                   alt="checkMarkIcon"/></div>
                                 <div className={s.currentStageScore}>
-                                    <div className={s.title}>77</div>
+                                    <div className={s.title}>{funnel!.passed}</div>
                                     <p className={s.smallTitle}>Passed</p>
                                 </div>
 
@@ -74,7 +72,7 @@ export const Vacancies: FC<VacanciesPropsType> = (props) => {
                             <div className={s.currentStageBlock}>
                                 <div className={s.iconBlock}><img className={s.icon} src={cross} alt="crossIcon"/></div>
                                 <div className={s.currentStageScore}>
-                                    <div className={s.title}>707</div>
+                                    <div className={s.title}>{funnel!.unsuccessful}</div>
                                     <p className={s.smallTitle}>Unsuccessful</p>
                                 </div>
 
@@ -83,7 +81,7 @@ export const Vacancies: FC<VacanciesPropsType> = (props) => {
                                 <div className={s.iconBlock}><img className={s.icon} src={circle} alt="circleIcon"/>
                                 </div>
                                 <div className={s.currentStageScore}>
-                                    <div className={s.title}>784</div>
+                                    <div className={s.title}>{funnel!.overall}</div>
                                     <p className={s.smallTitle}>Overall</p>
                                 </div>
 
@@ -92,20 +90,46 @@ export const Vacancies: FC<VacanciesPropsType> = (props) => {
                     </div>
                     <p className={s.title}>Leaderboard</p>
                     <p className={s.smallTitle}>Three best-performing candidates are:</p>
-                    <div className={s.Leaderboard}>
+                    <div className={s.leaderboard}>
 
 
-                        {leaders.map(l=>{
-                            return <div className={s.LeaderboardBlock}>
-                               <div>{l.first_name}</div>
-                                <div>{l.last_name}</div>
-                                <div>{l.success_rate}</div>
+                        <div className={s.leaderboard__firsEl}>
+                            {leaders.slice(0, 3).map((first) => {
+                                return <div key={first.id} className={s.leaderboardBlock}>
+                                    <div>
+                                        <div className={s.leaderboardBlock__rate}>
+                                            {first.success_rate}%
+                                        </div>
+                                        <p className={s.leaderboardBlock__title}>success rate</p>
+                                    </div>
+                                    <div className={s.leaderboardBlock__name}>{first.first_name} {first.last_name}</div>
+                                    <div className={s.leaderboardBlock__profile}>
+                                        <p className={s.leaderboardBlock__title}>Profile Results</p>
+                                    </div>
+                                </div>
+                            })}
+                        </div>
+
+                        <div className={s.leaderboard__otherEl}>
+                            <p className={s.smallTitle}> Also:</p>
+                            <div className={s.leaderboardOtherScroll}>
+                                {leaders.slice(3).map((other) => {
+                                    return <div key={other.id} className={s.leaderboardScrollBlock}>
+                                        <div className={s.leaderboardScrollBlock__info}>
+                                            <div className={s.leaderboardScrollBlock__rate}>
+                                                {other.success_rate}%
+                                            </div>
+                                            <div className={s.leaderboardScrollBlock__name}>
+                                                {other.first_name} {other.last_name}
+                                            </div>
+                                            <div className={s.leaderboardScrollBlock__profile}>
+                                                <p className={s.leaderboardScrollBlock__title}>Profile Results</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                })}
                             </div>
-                        })}
-                        {/*<div className={s.LeaderboardBlock}>John Smith</div>*/}
-                        {/*<div className={s.LeaderboardBlock}>Mitchel Darras</div>*/}
-                        {/*<div className={s.LeaderboardBlock}>Sofia Linde</div>*/}
-                        {/*<div className={s.LeaderboardBlock}>Also:</div>*/}
+                        </div>
                     </div>
                 </div>
 

@@ -1,5 +1,5 @@
-import {AxiosResponse} from "axios";
 import {instance} from "./instance";
+import {AxiosResponse} from "axios";
 
 
 export type LeaderboardDataType = {
@@ -8,13 +8,17 @@ export type LeaderboardDataType = {
     success_rate: number,
 }
 
-
-type StatisticsError = {
-    detail: string
+export type FunnelType = {
+    passed: number | null
+    unsuccessful: number | null
+    overall: number | null
 }
 
 
 export const statisticsApi = {
     leaderboard: () => instance
-        .get<LeaderboardDataType[]>('statistics/leaderboard')
+        .get<LeaderboardDataType[], AxiosResponse<LeaderboardDataType[]>>('statistics/leaderboard'),
+
+    funnel: () => instance
+        .get<FunnelType, AxiosResponse<FunnelType>>('statistics/funnel')
 }

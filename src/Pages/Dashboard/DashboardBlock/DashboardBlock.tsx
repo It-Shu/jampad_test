@@ -16,8 +16,7 @@ export const DashboardBlock: FC<DashboardBlockPropsType> = (props) => {
     } = props
 
 
-    const firstName = useSelector<RootState, UserInfo | string>(state => state.user.userFirstName)
-    const lastName = useSelector<RootState, UserInfo | string>(state => state.user.userLastName)
+    const userName = useSelector<RootState, UserInfo>(state => state.user)
     const dispatch = useDispatch()
 
 
@@ -29,7 +28,7 @@ export const DashboardBlock: FC<DashboardBlockPropsType> = (props) => {
 
     return (
         <div className={s.dashboardBlock}>
-            <div className={s.dashboardBlock__userName}>{firstName} {lastName}</div>
+            <div className={s.dashboardBlock__userName}>{userName.first_name} {userName.last_name}</div>
             <div className={s.dashboardBlock__administrator}>
                 <p className={s.dashboardBlock__smallTitle}>Vacancy:</p>
                 <p className={s.dashboardBlock__title}>System Administrator</p>

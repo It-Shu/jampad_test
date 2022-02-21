@@ -8,9 +8,6 @@ import {PATH} from "../../../routes/routes";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../../store/store";
 import {setLogin} from "../../../store/reducers/auth-reducer";
-import {UserInfoError} from "../../../api/info-api";
-import {setUserInfo} from "../../../store/reducers/userInfo-reducer";
-import {setStatisticInfo} from "../../../store/reducers/statistics-reducer";
 
 
 export const Auth = () => {
@@ -20,7 +17,6 @@ export const Auth = () => {
     const error = useSelector<RootState, string>(state => state.auth.isError)
     const emailError = useSelector<RootState, string>(state => state.auth.emailError)
     const passwordError = useSelector<RootState, string>(state => state.auth.passwordError)
-    const authError = useSelector<RootState, UserInfoError | string>(state => state.user.userInfoError)
 
     const dispatch = useDispatch()
 
