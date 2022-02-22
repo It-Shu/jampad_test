@@ -1,17 +1,15 @@
 import React, {FC, useEffect} from 'react';
 import s from './Vacancies.module.scss'
-import checkMark from '../../assets/images/check-mark.png'
-import cross from '../../assets/images/cross.png'
-import circle from '../../assets/images/circle.png'
 import {Navigate, NavLink} from 'react-router-dom';
 import {PATH} from "../../routes/routes";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../store/store";
 import {UserInfo} from "../../api/info-api";
 import {setUserInfo} from "../../store/reducers/userInfo-reducer";
-import {setStatisticInfo, LeaderboardInitialState} from "../../store/reducers/leaderboard-reducer";
+import {setStatisticInfo} from "../../store/reducers/leaderboard-reducer";
 import {setFunnelData} from "../../store/reducers/funnel-reducer";
-import {FunnelType} from "../../api/statistics-api";
+import {Funnel} from "./Funnel/Funnel";
+import {Leaderboard} from "./Leaderboard/Leaderboard";
 
 type VacanciesPropsType = {}
 
@@ -19,9 +17,8 @@ export const Vacancies: FC<VacanciesPropsType> = (props) => {
 
     const {} = props
 
-    const funnel = useSelector<RootState, FunnelType>(state => state.funnel)
-    const userInfo = useSelector<RootState, UserInfo>(state => state.user)
-    const leaders = useSelector<RootState, Array<LeaderboardInitialState>>(state => state.leader)
+
+   const userInfo = useSelector<RootState, UserInfo>(state => state.user)
 
     const dispatch = useDispatch()
 
@@ -40,7 +37,7 @@ export const Vacancies: FC<VacanciesPropsType> = (props) => {
     return (
         <div className={s.vacanciesPage}>
             <div className={s.header}>
-                <div>JamPad</div>
+                <div className={s.header__title}>JamPad</div>
                 <div>
                     <NavLink to={PATH.DASHBOARD}>
                         <button className={s.header__buttons}>DashBoard</button>
@@ -54,91 +51,22 @@ export const Vacancies: FC<VacanciesPropsType> = (props) => {
                 {userInfo.detail ? <div className={s.error}>{userInfo.detail}</div> : ''}
                 <div className={s.header__userName}>{userInfo.first_name} {userInfo.last_name}</div>
             </div>
+
             <div className={s.general}>
+
                 <div className={s.statistic}>
                     <p className={s.title}>Funnel-progress statistics</p>
                     <div className={s.progressStatistics}>
+                        <div className={s.graphic}></div>
 
-                        <div className={s.graphic}>
+                        <Funnel/>
 
-                        </div>
-                        <div className={s.currentStage}>
-                            <p className={s.smallTitle}>At the current stage:</p>
-                            <div className={s.currentStageBlock}>
-                                <div className={s.iconBlock}><img className={s.icon} src={checkMark}
-                                                                  alt="checkMarkIcon"/></div>
-                                <div className={s.currentStageScore}>
-                                    {userInfo.detail ? <div className={s.error}>{userInfo.detail}</div> : ''}
-                                    <div className={s.title}>{funnel!.passed}</div>
-                                    <p className={s.smallTitle}>Passed</p>
-                                </div>
-
-                            </div>
-                            <div className={s.currentStageBlock}>
-                                <div className={s.iconBlock}><img className={s.icon} src={cross} alt="crossIcon"/></div>
-                                <div className={s.currentStageScore}>
-                                    {userInfo.detail ? <div className={s.error}>{userInfo.detail}</div> : ''}
-                                    <div className={s.title}>{funnel!.unsuccessful}</div>
-                                    <p className={s.smallTitle}>Unsuccessful</p>
-                                </div>
-
-                            </div>
-                            <div className={s.currentStageBlock}>
-                                <div className={s.iconBlock}><img className={s.icon} src={circle} alt="circleIcon"/>
-                                </div>
-                                <div className={s.currentStageScore}>
-                                    {userInfo.detail ? <div className={s.error}>{userInfo.detail}</div> : ''}
-                                    <div className={s.title}>{funnel!.overall}</div>
-                                    <p className={s.smallTitle}>Overall</p>
-                                </div>
-
-                            </div>
-                        </div>
                     </div>
                     <p className={s.title}>Leaderboard</p>
                     <p className={s.smallTitle}>Three best-performing candidates are:</p>
-                    <div className={s.leaderboard}>
 
-                        {userInfo.detail ? <div className={s.error}>{userInfo.detail}</div> : ''}
-                        <div className={s.leaderboard__firsEl}>
-                            {leaders.slice(0, 3).map((first) => {
-                                return <div key={first.id} className={s.leaderboardBlock}>
-                                    <div>
-                                        <div className={s.leaderboardBlock__rate}>
-                                            {first.success_rate}%
-                                        </div>
-                                        <p className={s.leaderboardBlock__title}>success rate</p>
-                                    </div>
-                                    <div className={s.leaderboardBlock__name}>{first.first_name} {first.last_name}</div>
-                                    <div className={s.leaderboardBlock__profile}>
-                                        <p className={s.leaderboardBlock__title}>Profile Results</p>
-                                    </div>
-                                </div>
-                            })}
-                        </div>
+                    <Leaderboard/>
 
-                        <div className={s.leaderboard__otherEl}>
-                            <p className={s.smallTitle}> Also:</p>
-                            <div className={s.leaderboardOtherScroll}>
-
-                                {leaders.slice(3).map((other) => {
-                                    return <div key={other.id} className={s.leaderboardScrollBlock}>
-                                        <div className={s.leaderboardScrollBlock__info}>
-                                            <div className={s.leaderboardScrollBlock__rate}>
-                                                {other.success_rate}%
-                                            </div>
-                                            <div className={s.leaderboardScrollBlock__name}>
-                                                {other.first_name} {other.last_name}
-                                            </div>
-                                            <div className={s.leaderboardScrollBlock__profile}>
-                                                <p className={s.leaderboardScrollBlock__title}>Profile Results</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                })}
-                            </div>
-                        </div>
-                    </div>
                 </div>
 
                 <div className={s.vacancy}>

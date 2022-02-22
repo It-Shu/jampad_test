@@ -2,9 +2,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  //width: 100%;
   background-color: white;
-  //border: none;
   box-shadow: 0 0 7px 0 #9b9b9b;
   border-top-left-radius: 30px;
   padding: 30px 30px;
@@ -13,9 +11,8 @@
 
 .dashboardBlock__userName {
   align-self: flex-end;
-  //margin-top: -1%;
   margin-top: -5px;
-  margin-left: 135.6px;
+  font-weight: bold;
 }
 
 .dashboardBlock__administrator{
@@ -71,7 +68,6 @@
 .dashboardBlock__components__search {
   display: flex;
   flex-direction: row;
-  //flex-flow: row wrap;
   justify-content: space-evenly;
 
 }

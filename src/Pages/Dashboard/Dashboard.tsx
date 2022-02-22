@@ -1,8 +1,10 @@
-import React, {FC} from 'react';
+import React, {FC, useState} from 'react';
 import {Navigate, NavLink} from "react-router-dom";
 import {PATH} from "../../routes/routes";
 import s from './Dashboard.module.scss'
-import Cards from "./Cards/Cards";
+import {CardsType} from "./Cards/Cards";
+import ReactFlow from "react-flow-renderer";
+import {DashboardBlock} from "./DashboardBlock/DashboardBlock";
 
 
 type DashboardPropsType = {}
@@ -12,29 +14,81 @@ export const Dashboard: FC<DashboardPropsType> = (props) => {
     const {} = props
 
 
+    const [card1, setCard1] = useState<CardsType[]>([
+        {id: '1', title: 'Screening resume'},
+    ])
+    const [card2, setCard2] = useState<CardsType[]>([
+        {id: '2', title: 'Basic Interview'},
+    ])
+    const [card3, setCard3] = useState<CardsType[]>([
+        {id: '3', title: 'Test Task'},
+    ])
+
     if (!localStorage.getItem('token')) {
         return <Navigate to={PATH.ACCESS}/>
     }
 
 
+    const elements: any = [
+        {
+            id: '1',
+            type: 'input', // input node
+            data: {label: 'Input Node'},
+            position: {x: 250, y: 25},
+        },
+        // default node
+        {
+            id: '2',
+            // you can also pass a React component as a label
+            data: {label: <div>Default Node</div>},
+            position: {x: 100, y: 125},
+        },
+        {
+            id: '3',
+            type: 'output', // output node
+            data: {label: 'Output Node'},
+            position: {x: 250, y: 250},
+        },
+        // animated edge
+        {id: 'e1-2', source: '1', target: '2', animated: true},
+        {id: 'e2-3', source: '2', target: '3', animated: true},
+    ];
+
+
     return (
         <div className={s.dashboardPage}>
-            <div className={s.dashboardPage__header}>
-                <div className={s.dashboardPage__header__logo}>JamPad</div>
-                <div className={s.dashboardPage__header__buttons}>
-                    <NavLink to={PATH.DASHBOARD}>
-                        <button className={s.dashboardPage__header__button__pathActive}>DashBoard</button>
-                    </NavLink>
-                    <NavLink to={PATH.VACANCIES}>
-                        <button className={s.dashboardPage__header__button}>Vacancies</button>
-                    </NavLink>
 
-                    <button className={s.dashboardPage__header__button}>Testings</button>
+            <div className={s.dashboardPage__cardBlock}>
+
+                <div className={s.dashboardPage__header}>
+
+                    <div className={s.dashboardPage__header__logo}>JamPad</div>
+                    <div className={s.dashboardPage__header__buttons}>
+                        <NavLink to={PATH.DASHBOARD}>
+                            <button className={s.dashboardPage__header__button__pathActive}>DashBoard</button>
+                        </NavLink>
+                        <NavLink to={PATH.VACANCIES}>
+                            <button className={s.dashboardPage__header__button}>Vacancies</button>
+                        </NavLink>
+
+                        <button className={s.dashboardPage__header__button}>Testings</button>
+                    </div>
                 </div>
+
+                <div className={s.dashboardPage__cardBlock__reactFlow}>
+                    <ReactFlow elements={elements}/>
+                </div>
+
             </div>
 
+            <div className={s.dashboardBlockPage}>
+                <DashboardBlock card1={card1} card2={card2} card3={card3}/>
+            </div>
 
-            <Cards/>
+            {/*<div className={s.dashboardPage__header}>*/}
+
+            {/*</div>*/}
+            {/*<Cards />*/}
 
         </div>
     );

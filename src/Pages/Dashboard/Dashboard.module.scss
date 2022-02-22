@@ -1,11 +1,48 @@
-.dashboardPage{
+//.dashboardPage{
+//    display: flex;
+//    flex-direction: row;
+//    justify-content: space-between;
+//    background: linear-gradient(#bbb, transparent 1px), linear-gradient(90deg, #bbb, transparent 1px);
+//    background-size: 105px 105px;
+//    background-position: center center;
+//
+//  .dashboardPage__cardBlock{
+//    display: flex;
+//    flex-direction: column;
+//    justify-content: space-between;
+//    width: 90%;
+//
+//    .dashboardPage__header{
+//      display: flex;
+//      flex-direction: row;
+//      justify-content: space-between;
+//
+//      .dashboardPage__header__logo{}
+//
+//      .dashboardPage__header__buttons{}
+//
+//      .dashboardPage__header__button__pathActive{}
+//
+//      .dashboardPage__cardBlock__reactFlow{
+//        margin-bottom: 100px;
+//        border: 3px solid #FED614;
+//      }
+//    }
+//
+//  }
+//
+//}
+
+
+.dashboardPage {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  background: linear-gradient( #bbb, transparent 1px), linear-gradient( 90deg, #bbb, transparent 1px);
+  background: linear-gradient(#bbb, transparent 1px), linear-gradient(90deg, #bbb, transparent 1px);
   background-size: 105px 105px;
   background-position: center center;
 }
+
 
 .dashboardPage__header {
   display: flex;
@@ -14,12 +51,13 @@
   margin-top: 25px;
 }
 
-.dashboardPage__header__logo{
-  //margin-left: 10.5%;
+.dashboardPage__header__logo {
+  font-size: large;
+  font-weight: bold;
 }
 
-.dashboardPage__header__buttons{
-  margin-left: 651px;
+.dashboardPage__header__buttons {
+  margin-left: 565px;
 }
 
 
@@ -43,7 +81,7 @@
 }
 
 
-.dashboardPage__header__button__pathActive{
+.dashboardPage__header__button__pathActive {
   border: none;
   background-color: #ffffff;
   border-radius: 5px;
@@ -64,15 +102,20 @@
 }
 
 
-.dashboardPage__cardBlock{
+.dashboardPage__cardBlock {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  align-self: center;
-  margin-left: -60%;
+  justify-content: space-between;
+  width: 100%;
 }
 
-.dashboardPage__cardBlock__generalOpenCard{
+.dashboardPage__cardBlock__reactFlow {
+  //border: 3px solid #FED614;
+  height: 100vh;
+  width: 100%;
+}
+
+.dashboardPage__cardBlock__generalOpenCard {
   position: absolute;
   top: 30%;
   left: 34%;
@@ -85,7 +128,7 @@
   cursor: grab;
 }
 
-.dashboardPage__cardBlock__generalClosedCar{
+.dashboardPage__cardBlock__generalClosedCar {
   position: absolute;
   top: 70%;
   left: 34%;
@@ -98,7 +141,7 @@
   cursor: grab;
 }
 
-.dashboardPage__cardBlock__cards1{
+.dashboardPage__cardBlock__cards1 {
   display: flex;
   flex-direction: row;
   position: absolute;
@@ -106,7 +149,7 @@
 
 }
 
-.dashboardPage__cardBlock__cards2{
+.dashboardPage__cardBlock__cards2 {
   display: flex;
   flex-direction: row;
   position: absolute;
@@ -114,7 +157,7 @@
   top: 40%;
 }
 
-.dashboardPage__cardBlock__cards3{
+.dashboardPage__cardBlock__cards3 {
   display: flex;
   flex-direction: row;
   position: absolute;
@@ -140,7 +183,7 @@
   cursor: grab;
 }
 
-.dashboardPage__cardBlock__card:active{
+.dashboardPage__cardBlock__card:active {
   border-radius: 5px;
   text-align: center;
   padding: 7px 30px;
@@ -148,3 +191,4 @@
   cursor: grab;
   background-color: #FED614;
 }
+
