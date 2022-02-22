@@ -98,8 +98,19 @@
   cursor: grab;
 }
 
+.dashboardPage__cardBlock__cards{
+  display: flex;
+  flex-direction: row;
+}
+.trash {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  opacity: 0.4;
+}
+
 .dashboardPage__cardBlock__card {
-  //position: absolute;
+  position: absolute;
   //top: 50%;
   //left: 35%;
   align-items: center;

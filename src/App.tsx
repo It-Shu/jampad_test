@@ -8,7 +8,7 @@ import {AppRouter} from "./routes/AppRouter";
 
 function App() {
     return (
-        <div className={s.app}>
+        <div>
             <AppRouter/>
         </div>
     );

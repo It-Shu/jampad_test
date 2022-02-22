@@ -34,7 +34,7 @@ export const Vacancies: FC<VacanciesPropsType> = (props) => {
     }, []);
 
     if (!localStorage.getItem('token')) {
-        return <Navigate to={PATH.AUTH}/>
+        return <Navigate to={PATH.ACCESS}/>
     }
 
     return (

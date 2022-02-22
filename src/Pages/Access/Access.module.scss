@@ -11,12 +11,17 @@
 }
 
 .modal__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  //align-items: center;
   padding: 20px;
   border-radius: 15px;
   background-color: white;
   width: 400px;
   height: 200px;
 }
+
 
 
 .accessPage__button {
