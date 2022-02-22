@@ -6,13 +6,17 @@ import {UserInfo} from "../../../api/info-api";
 import {setUserInfo} from "../../../store/reducers/userInfo-reducer";
 
 type DashboardBlockPropsType = {
-    cards: { id: string, title: string }[]
+    card1: { id: string, title: string }[]
+    card2: { id: string, title: string }[]
+    card3: { id: string, title: string }[]
 }
 
 export const DashboardBlock: FC<DashboardBlockPropsType> = (props) => {
 
     const {
-        cards,
+        card1,
+        card2,
+        card3,
     } = props
 
 
@@ -23,52 +27,7 @@ export const DashboardBlock: FC<DashboardBlockPropsType> = (props) => {
     useEffect(() => {
         if (localStorage.getItem('token')) {
             dispatch(setUserInfo())
-
         }
-
-        dragElement(document.getElementById("moveCards"));
-
-        function dragElement(elmnt: any) {
-            let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-            // if (document.getElementById(elmnt.id + "header")) {
-            //     /* if present, the header is where you move the DIV from:*/
-            //     // document.getElementById(elmnt.id + "header")!.onmousedown = dragMouseDown;
-            // } else {
-            /* otherwise, move the DIV from anywhere inside the DIV:*/
-            elmnt.onmousedown = dragMouseDown;
-            // }
-
-            function dragMouseDown(e: any) {
-                e = e || window.event;
-                e.preventDefault();
-                // get the mouse cursor position at startup:
-                pos3 = e.clientX;
-                pos4 = e.clientY;
-                document.onmouseup = closeDragElement;
-                // call a function whenever the cursor moves:
-                document.onmousemove = elementDrag;
-            }
-
-            function elementDrag(e: any) {
-                e = e || window.event;
-                e.preventDefault();
-                // calculate the new cursor position:
-                pos1 = pos3 - e.clientX;
-                pos2 = pos4 - e.clientY;
-                pos3 = e.clientX;
-                pos4 = e.clientY;
-                // set the element's new position:
-                elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
-                elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
-            }
-
-            function closeDragElement() {
-                /* stop moving when mouse button is released:*/
-                document.onmouseup = null;
-                document.onmousemove = null;
-            }
-        }
-
     }, []);
 
     return (
@@ -90,26 +49,30 @@ export const DashboardBlock: FC<DashboardBlockPropsType> = (props) => {
                 </div>
                 <p className={s.dashboardBlock__mediumTitle}>Interview</p>
                 <div className={s.dashboardBlock__components__interview}>
-                    {/*<div className={s.dashboardBlock__components__interview__block}>*/}
-                    {/*    Basic <br/>Interview*/}
-                    {/*</div>*/}
-                    {/*<div className={s.dashboardBlock__components__interview__block}>*/}
-                    {/*    Interview <br/>with others*/}
-                    {/*</div>*/}
-                    {/*<div className={s.dashboardBlock__components__interview__block}>*/}
-                    {/*    Group <br/> interview*/}
-                    {/*</div>*/}
-                    {/*<div className={s.dashboardBlock__components__interview__block}>*/}
-                    {/*    All-video<br/> interview*/}
-                    {/*</div>*/}
-                    {cards.map(card => {
-                        return <div key={card.id}
-                                    id={'moveCards'}
+
+                    {card1.map(card1 => {
+                        return <div key={card1.id}
                                     className={s.dashboardBlock__components__interview__block}
-                                    draggable={true}>
-                            {card.title}
+                        >
+                            {card1.title}
                         </div>
                     })}
+                    {card2.map(card2 => {
+                        return <div key={card2.id}
+                                    className={s.dashboardBlock__components__interview__block}
+                        >
+                            {card2.title}
+                        </div>
+                    })}
+                    {card3.map(card3 => {
+                        return <div key={card3.id}
+                                    className={s.dashboardBlock__components__interview__block}
+                        >
+                            {card3.title}
+                        </div>
+                    })}
+
+
                 </div>
             </div>
         </div>

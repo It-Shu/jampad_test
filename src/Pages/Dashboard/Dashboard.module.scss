@@ -98,10 +98,30 @@
   cursor: grab;
 }
 
-.dashboardPage__cardBlock__cards{
+.dashboardPage__cardBlock__cards1{
   display: flex;
   flex-direction: row;
+  position: absolute;
+  left: 31.5%;
+
 }
+
+.dashboardPage__cardBlock__cards2{
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  left: 32%;
+  top: 40%;
+}
+
+.dashboardPage__cardBlock__cards3{
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  left: 33%;
+  top: 60%;
+}
+
 .trash {
   width: 20px;
   height: 20px;
@@ -110,9 +130,6 @@
 }
 
 .dashboardPage__cardBlock__card {
-  position: absolute;
-  //top: 50%;
-  //left: 35%;
   align-items: center;
   margin: 25px;
   background-color: #ffffff;
@@ -124,9 +141,6 @@
 }
 
 .dashboardPage__cardBlock__card:active{
-  //position: absolute;
-  //top: 50%;
-  //left: 35%;
   border-radius: 5px;
   text-align: center;
   padding: 7px 30px;
