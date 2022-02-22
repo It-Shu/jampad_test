@@ -12,9 +12,9 @@ export const AppRouter = () => {
     return (
         <Routes>
             <Route key={PATH.AUTH} path={PATH.AUTH} element={<Auth/>}/>
-            <Route path={PATH.VACANCIES} element={<Vacancies />}/>
-            <Route path={PATH.DASHBOARD} element={<Dashboard />}/>
-            <Route path={PATH.ACCESS} element={<AccessModal />}/>
+            <Route path={PATH.VACANCIES} element={<Vacancies/>}/>
+            <Route path={PATH.DASHBOARD} element={<Dashboard/>}/>
+            <Route path={PATH.ACCESS} element={<AccessModal/>}/>
         </Routes>
     );
 };

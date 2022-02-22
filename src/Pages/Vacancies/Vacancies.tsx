@@ -18,7 +18,7 @@ export const Vacancies: FC<VacanciesPropsType> = (props) => {
     const {} = props
 
 
-   const userInfo = useSelector<RootState, UserInfo>(state => state.user)
+    const userInfo = useSelector<RootState, UserInfo>(state => state.user)
 
     const dispatch = useDispatch()
 

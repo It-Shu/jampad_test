@@ -1,7 +1,7 @@
 import axios, {AxiosResponse} from "axios"
 
 
-// TYPES
+
 export type RequestLoginType = {
     email: string
     password: string
@@ -13,7 +13,6 @@ export type ResponseLoginType = {
 }
 
 export type ResponseErrorsType = {
-
     detail: string
     error: string
     email: string

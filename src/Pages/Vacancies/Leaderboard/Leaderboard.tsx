@@ -5,8 +5,6 @@ import {RootState} from "../../../store/store";
 import {LeaderboardInitialState} from "../../../store/reducers/leaderboard-reducer";
 
 
-
-
 export const Leaderboard = () => {
 
     const leaders = useSelector<RootState, Array<LeaderboardInitialState>>(state => state.leader)
@@ -15,7 +13,6 @@ export const Leaderboard = () => {
     return (
         <div className={s.leaderboard}>
 
-            {/*{userInfo.detail ? <div className={s.error}>{userInfo.detail}</div> : ''}*/}
             <div className={s.leaderboard__firsEl}>
                 {leaders.slice(0, 3).map((first) => {
                     return <div key={first.id} className={s.leaderboardBlock}>

@@ -11,7 +11,7 @@ type LeaderboardActionType =
     | ReturnType<typeof leaderboardData>
 
 
-export type LeaderboardInitialState = LeaderboardDataType & {id: string }
+export type LeaderboardInitialState = LeaderboardDataType & { id: string }
 
 const InitialState: Array<LeaderboardInitialState> = []
 

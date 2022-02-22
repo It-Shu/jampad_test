@@ -8,12 +8,9 @@ import {RootState} from "../../../store/store";
 import {FunnelType} from "../../../api/statistics-api";
 
 
-
 export const Funnel = () => {
 
     const funnel = useSelector<RootState, FunnelType>(state => state.funnel)
-
-
 
 
     return (

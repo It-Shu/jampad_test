@@ -1,5 +1,3 @@
-
-
 export enum PATH {
     AUTH = '/',
     ACCESS = '/access',

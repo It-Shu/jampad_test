@@ -6,17 +6,14 @@ import {UserInfo} from "../../../api/info-api";
 import {setUserInfo} from "../../../store/reducers/userInfo-reducer";
 
 type DashboardBlockPropsType = {
-    card1: { id: string, title: string }[]
-    card2: { id: string, title: string }[]
-    card3: { id: string, title: string }[]
+    card?: any
+
 }
 
 export const DashboardBlock: FC<DashboardBlockPropsType> = (props) => {
 
     const {
-        card1,
-        card2,
-        card3,
+        card,
     } = props
 
     const userInfo = useSelector<RootState, UserInfo>(state => state.user)
@@ -50,28 +47,6 @@ export const DashboardBlock: FC<DashboardBlockPropsType> = (props) => {
                 </div>
                 <p className={s.dashboardBlock__mediumTitle}>Interview</p>
                 <div className={s.dashboardBlock__components__interview}>
-
-                    {card1.map(card1 => {
-                        return <div key={card1.id}
-                                    className={s.dashboardBlock__components__interview__block}
-                        >
-                            {card1.title}
-                        </div>
-                    })}
-                    {card2.map(card2 => {
-                        return <div key={card2.id}
-                                    className={s.dashboardBlock__components__interview__block}
-                        >
-                            {card2.title}
-                        </div>
-                    })}
-                    {card3.map(card3 => {
-                        return <div key={card3.id}
-                                    className={s.dashboardBlock__components__interview__block}
-                        >
-                            {card3.title}
-                        </div>
-                    })}
 
 
                 </div>
