@@ -10,6 +10,7 @@ import {setStatisticInfo} from "../../store/reducers/leaderboard-reducer";
 import {setFunnelData} from "../../store/reducers/funnel-reducer";
 import {Funnel} from "./Funnel/Funnel";
 import {Leaderboard} from "./Leaderboard/Leaderboard";
+import logo from '../../assets/images/yelowLogo.png'
 
 type VacanciesPropsType = {}
 
@@ -37,7 +38,8 @@ export const Vacancies: FC<VacanciesPropsType> = (props) => {
     return (
         <div className={s.vacanciesPage}>
             <div className={s.header}>
-                <div className={s.header__title}>JamPad</div>
+
+                <div className={s.header__title}><img className={s.vacanciesPage__header__logo} src={logo} alt="logo"/>JamPad</div>
                 <div>
                     <NavLink to={PATH.DASHBOARD}>
                         <button className={s.header__buttons}>DashBoard</button>

@@ -17,10 +17,8 @@ export const Funnel = () => {
         <div className={s.currentStage}>
             <p className={s.smallTitle}>At the current stage:</p>
             <div className={s.currentStageBlock}>
-                <div className={s.iconBlock}><img className={s.icon} src={checkMark}
-                                                  alt="checkMarkIcon"/></div>
+                <div className={s.iconBlock}><img className={s.icon} src={checkMark} alt="checkMarkIcon"/></div>
                 <div className={s.currentStageScore}>
-                    {/*{userInfo.detail ? <div className={s.error}>{userInfo.detail}</div> : ''}*/}
                     <div className={s.title}>{funnel!.passed}</div>
                     <p className={s.smallTitle}>Passed</p>
                 </div>
@@ -29,7 +27,6 @@ export const Funnel = () => {
             <div className={s.currentStageBlock}>
                 <div className={s.iconBlock}><img className={s.icon} src={cross} alt="crossIcon"/></div>
                 <div className={s.currentStageScore}>
-                    {/*{userInfo.detail ? <div className={s.error}>{userInfo.detail}</div> : ''}*/}
                     <div className={s.title}>{funnel!.unsuccessful}</div>
                     <p className={s.smallTitle}>Unsuccessful</p>
                 </div>
@@ -39,7 +36,6 @@ export const Funnel = () => {
                 <div className={s.iconBlock}><img className={s.icon} src={circle} alt="circleIcon"/>
                 </div>
                 <div className={s.currentStageScore}>
-                    {/*{userInfo.detail ? <div className={s.error}>{userInfo.detail}</div> : ''}*/}
                     <div className={s.title}>{funnel!.overall}</div>
                     <p className={s.smallTitle}>Overall</p>
                 </div>

@@ -10,8 +10,18 @@
 
 }
 
+.welcome_block__logo{
+  position: absolute;
+  left: 4%;
+  top: 10%;
+  //margin-top: -50%;
+  margin-right: 60%;
+  width: 33px;
+  height: 48px;
+}
+
 .welcomeText{
-  margin-top: -17%;
+  margin-top: -7%;
 }
 
 .welcome {
@@ -25,11 +35,13 @@
 .singUpText {
   opacity: 0.5;
 }
+
+
 .joinButton{
   border: none;
   background-color: #383838;
   border-radius: 5px;
-  margin-top: 40px;
+  //margin-top: -140%;
   width: 70%;
   height: 36px;
   color: white;

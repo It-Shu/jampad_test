@@ -6,15 +6,12 @@ import {UserInfo} from "../../../api/info-api";
 import {setUserInfo} from "../../../store/reducers/userInfo-reducer";
 
 type DashboardBlockPropsType = {
-    card?: any
 
 }
 
 export const DashboardBlock: FC<DashboardBlockPropsType> = (props) => {
 
-    const {
-        card,
-    } = props
+    const {} = props
 
     const userInfo = useSelector<RootState, UserInfo>(state => state.user)
     const userName = useSelector<RootState, UserInfo>(state => state.user)
@@ -47,8 +44,10 @@ export const DashboardBlock: FC<DashboardBlockPropsType> = (props) => {
                 </div>
                 <p className={s.dashboardBlock__mediumTitle}>Interview</p>
                 <div className={s.dashboardBlock__components__interview}>
-
-
+                    <div className={s.dashboardBlock__components__interview__block}>Basic interview</div>
+                    <div className={s.dashboardBlock__components__interview__block}>Interview with others</div>
+                    <div className={s.dashboardBlock__components__interview__block}>Group Interview</div>
+                    <div className={s.dashboardBlock__components__interview__block}>AI-video interview</div>
                 </div>
             </div>
         </div>
