@@ -56,7 +56,7 @@ export const Auth = () => {
                                type={'password'}
                                value={password}
                                password
-                               onChange={e => setPassword(e.currentTarget.value)}/>
+                               onChange={e => setPassword(e.currentTarget.value.trim())}/>
                     </label>
                     {error.error ? <div className={s.error}>{error.error}</div> : null}
                     {error.password ? <div className={s.error}>{error.password}</div> : null}
